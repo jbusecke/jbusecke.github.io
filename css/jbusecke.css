@@ -197,12 +197,16 @@ a.lead:focus {
     background-color: #333
 }
 
-/*a.publications:link,
-a.publications:hover,
-a.publications:focus,
-a.publications:visited {
+.paper {
+  color: #FFFFFF
+}
+
+a.paper:link,
+a.paper:hover,
+a.paper:focus,
+a.paper:visited {
     color: #FFFFFF
-}*/
+}
 
 /*a.publications:hover,
 a.publications:focus {
@@ -210,15 +214,15 @@ a.publications:focus {
 }*/
 
 /*set custom link color for publication section...Probably one can default this in the bg-primary definition*/
-#pub_item a:link {
+/*#pub_item a:link {
 	color: #FFFFFF;
   text-decoration: none;
-}
+}*/
 
 #pub_item a:visited,
 a:hover,
 a:active {
-	color: #e5e5e5;
+	color: #ff0000;
   text-decoration: none;
 }
 
