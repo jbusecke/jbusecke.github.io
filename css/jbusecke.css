@@ -51,8 +51,17 @@ body {
     background-color: rgba(255,255,255,0.8);
 }
 
-/* Custom Link Styles */
+/* Custom lead Styles */
+/*.lead-dark {
+    color: #fff;
+}*/
 
+/*a.lead-dark :hover,
+a.lead-dark :focus,
+a.lead-dark :active {
+    color: #fff;
+    background-color: rgba(0,0,0,0.7);
+}*/
 
 /* Custom Horizontal Rule */
 
@@ -186,7 +195,7 @@ hr.small {
 a:visited,
 a:hover,
 a:active {
-	color: #000000;
+	color: #000000 !important;
   text-decoration: none;
 }
 
@@ -203,7 +212,7 @@ a:active {
 a:visited,
 a:hover,
 a:active {
-	color: #FFFFFF;
+	color: #FFFFFF !important;
   text-decoration: none;
 }
 
