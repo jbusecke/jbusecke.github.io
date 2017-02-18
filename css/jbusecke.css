@@ -180,16 +180,6 @@ hr.small {
 }
 
 /* Publications */
-/*a.lead:link {
-    color: #00ff00;
-    background-color: #ff0000;
-}
-a.lead:hover,
-a.lead:focus {
-    color: #ff0000;
-    background-color: #00ff00;
-}*/
-
 
 .publications {
     padding: 50px 0;
@@ -201,12 +191,22 @@ a.lead:focus {
   color: #FFFFFF
 }
 
-a.paper:link,
+.paper > .lead a {
+    color: #FFFFFF;
+}
+
+.paper a:active,
+.paper a:focus {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/*a.paper:link,
 a.paper:hover,
 a.paper:focus,
 a.paper:visited {
     color: #FFFFFF
-}
+}*/
 
 /*a.publications:hover,
 a.publications:focus {
@@ -219,12 +219,12 @@ a.publications:focus {
   text-decoration: none;
 }*/
 
-#pub_item a:visited,
+/*#pub_item a:visited,
 a:hover,
 a:active {
 	color: #ff0000;
   text-decoration: none;
-}
+}*/
 
 
 
