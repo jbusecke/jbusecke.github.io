@@ -59,8 +59,6 @@ hr.small {
 
 /* Side Menu */
 
-
-
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
@@ -185,6 +183,23 @@ hr.small {
     color: color: #999
     background-color: #333
 }
+
+.publication p a {
+    display: block;
+    text-decoration: none;
+    color: #999;
+}
+
+/*.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}*/
 
 
 
