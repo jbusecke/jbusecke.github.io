@@ -52,11 +52,11 @@ body {
 }
 
 /* Custom lead Styles */
-.lead-dark > .lead{
+.lead-dark {
     color: #FFA500 !important;
 }
 
-.lead-light > .lead{
+.lead-light {
     color: #FFA500 !important;
 }
 
@@ -71,6 +71,12 @@ p.lead-dark li a,
 p.lead-dark li a:visited,
 p.lead-dark li a:hover,
 p.lead-dark li a:active {
+    color: #FFA500 !important;
+}
+
+p.lead-dark:visited,
+p.lead-dark:hover,
+p.lead-dark:active {
     color: #FFA500 !important;
 }
 /* Custom Horizontal Rule */
