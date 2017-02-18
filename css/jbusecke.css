@@ -180,10 +180,14 @@ hr.small {
 }
 
 /* Publications */
-a.bg-primary:hover,
-a.bg-primary:focus {
+a.lead:hover,
+a.lead:focus {
     color: #ff0000;
     background-color: #00ff00;
+}
+a.lead:link {
+    color: #00ff00;
+    background-color: #ff0000;
 }
 
 .publications {
