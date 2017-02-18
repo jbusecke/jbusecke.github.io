@@ -215,16 +215,9 @@ a:visited,
 a:hover,
 a:active {
 	color: #FFFFFF;
+  text-decoration: none;
 }
-/*#pub a:visited {
-	color: #777;
-}
-#pub a:hover {
-	color: #ff0000;
-}
-#pub a:active {
-	color: #00ff00;
-}*/
+
 
 
 
