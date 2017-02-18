@@ -219,14 +219,14 @@ a.publications:focus {
 #pub a:visited,
 a:hover,
 a:active {
-	color: #FFFFFF;
+	color: #e5e5e5;
   text-decoration: none;
 }
 
-#CV_button a:link,
-a:visited,
-a:hover,
-a:active {
+#CV_button:link,
+#CV_button:visited,
+#CV_button:hover,
+#CV_button:active {
 	color: #000000;
   text-decoration: none;
 }
