@@ -60,25 +60,25 @@ body {
     color: #FFA500 !important;
 }
 
-p.lead-light li a,
-p.lead-light li a:visited,
-p.lead-light li a:hover,
-p.lead-light li a:active {
+/*p.lead-light a,
+p.lead-light a:visited,
+p.lead-light a:hover,
+p.lead-light a:active {
+    color: #FFA500 !important;
+}*/
+
+p.lead-dark a,
+p.lead-dark a:visited,
+p.lead-dark a:hover,
+p.lead-dark a:active {
     color: #FFA500 !important;
 }
 
-p.lead-dark li a,
-p.lead-dark li a:visited,
-p.lead-dark li a:hover,
-p.lead-dark li a:active {
-    color: #FFA500 !important;
-}
-
-p.lead-dark:visited,
+/*p.lead-dark:visited,
 p.lead-dark:hover,
 p.lead-dark:active {
     color: #FFA500 !important;
-}
+}*/
 /* Custom Horizontal Rule */
 
 hr.small {
