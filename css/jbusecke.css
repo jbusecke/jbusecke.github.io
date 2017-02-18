@@ -53,32 +53,28 @@ body {
 
 /* Custom lead Styles */
 .lead-dark {
-    color: #FFA500 !important;
+    color: #000000 !important;
 }
 
 .lead-light {
-    color: #FFA500 !important;
+    color: #FFFFFF !important;
 }
-
-/*p.lead-light a,
-p.lead-light a:visited,
-p.lead-light a:hover,
-p.lead-light a:active {
-    color: #FFA500 !important;
-}*/
 
 p.lead-dark a,
 p.lead-dark a:visited,
 p.lead-dark a:hover,
 p.lead-dark a:active {
-    color: #FFA500 !important;
+    color: #000000 !important;
 }
 
-/*p.lead-dark:visited,
-p.lead-dark:hover,
-p.lead-dark:active {
-    color: #FFA500 !important;
-}*/
+p.lead-light a,
+p.lead-light a:visited,
+p.lead-light a:hover,
+p.lead-light a:active {
+    color: #FFFFFF !important;
+}
+
+
 /* Custom Horizontal Rule */
 
 hr.small {
