@@ -210,11 +210,15 @@ a.publications:focus {
 }*/
 
 /*set custom link color for publication section...Probably one can default this in the bg-primary definition*/
-#pub a:link,
-a:visited,
+#pub a:link {
+	color: #FFFFFF;
+  text-decoration: none;
+}
+
+#pub a:visited,
 a:hover,
 a:active {
-	color: #FFFFFF;
+	color: #F2F2F2;
   text-decoration: none;
 }
 
