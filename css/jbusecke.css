@@ -52,17 +52,27 @@ body {
 }
 
 /* Custom lead Styles */
-/*.lead-dark {
-    color: #fff;
-}*/
+.lead-dark > .lead{
+    color: #000;
+}
 
-/*a.lead-dark :hover,
-a.lead-dark :focus,
-a.lead-dark :active {
+.lead-light > .lead{
     color: #fff;
-    background-color: rgba(0,0,0,0.7);
-}*/
+}
 
+p.lead-light li a,
+p.lead-light li a:visited,
+p.lead-light li a:hover,
+p.lead-light li a:active {
+    color: #fff !important;
+}
+
+p.lead-dark li a,
+p.lead-dark li a:visited,
+p.lead-dark li a:hover,
+p.lead-dark li a:active {
+    color: #000 !important;
+}
 /* Custom Horizontal Rule */
 
 hr.small {
@@ -191,13 +201,13 @@ hr.small {
     padding: 50px 0;
 }
 
-#about a:link,
+/*#about a:link,
 a:visited,
 a:hover,
 a:active {
 	color: #000000 !important;
   text-decoration: none;
-}
+}*/
 
 /* Publications */
 
