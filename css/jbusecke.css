@@ -179,12 +179,13 @@ hr.small {
     padding: 50px 0;
 }
 
-#about a:visited,
+#about a:link,
+a:visited,
 a:hover,
 a:active {
 	color: #000000;
+  text-decoration: none;
 }
-
 
 /* Publications */
 
@@ -194,7 +195,7 @@ a:active {
     background-color: #333
 }
 
-/*set custom link color for publication section...Probably one can default this in the bg-primary definition*/*/
+/*set custom link color for publication section...Probably one can default this in the bg-primary definition*/
 #pub a:link,
 a:visited,
 a:hover,
@@ -202,8 +203,6 @@ a:active {
 	color: #FFFFFF;
   text-decoration: none;
 }
-
-
 
 
 
