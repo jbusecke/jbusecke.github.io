@@ -53,25 +53,25 @@ body {
 
 /* Custom lead Styles */
 .lead-dark > .lead{
-    color: #000;
+    color: #FFA500 !important;
 }
 
 .lead-light > .lead{
-    color: #fff;
+    color: #FFA500 !important;
 }
 
 p.lead-light li a,
 p.lead-light li a:visited,
 p.lead-light li a:hover,
 p.lead-light li a:active {
-    color: #fff !important;
+    color: #FFA500 !important;
 }
 
 p.lead-dark li a,
 p.lead-dark li a:visited,
 p.lead-dark li a:hover,
 p.lead-dark li a:active {
-    color: #000 !important;
+    color: #FFA500 !important;
 }
 /* Custom Horizontal Rule */
 
