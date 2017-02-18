@@ -170,6 +170,9 @@ hr.small {
     -o-background-size: cover;
 }
 
+
+
+
 /* About */
 
 .about {
@@ -177,6 +180,11 @@ hr.small {
 }
 
 /* Publications */
+a.bg-primary:hover,
+a.bg-primary:focus {
+    color: #ff0000;
+    background-color: #00ff00;
+}
 
 .publications {
     padding: 50px 0;
@@ -184,13 +192,14 @@ hr.small {
     background-color: #333
 }
 
-.publication p a {
+/*.publication p a {
     color: #ff0000;
 }
 
 .publication p a:hover {
     color: #00ff00;
-}
+}*/
+
 
 /*.sidebar-nav li a:hover {
     text-decoration: none;
