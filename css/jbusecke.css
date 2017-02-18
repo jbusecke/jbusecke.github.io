@@ -185,9 +185,11 @@ hr.small {
 }
 
 .publication p a {
-    display: block;
-    text-decoration: none;
-    color: #999;
+    color: #ff0000;
+}
+
+.publication p a:hover {
+    color: #00ff00;
 }
 
 /*.sidebar-nav li a:hover {
