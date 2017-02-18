@@ -187,29 +187,6 @@ hr.small {
     background-color: #333
 }
 
-/*.paper > .lead a {
-    color: #FFFFFF;
-}
-
-.paper a:link,
-.paper a:active,
-.paper a:focus {
-    color: #FFFFFF;
-    text-decoration: none;
-}*/
-
-/*a.paper:link,
-a.paper:hover,
-a.paper:focus,
-a.paper:visited {
-    color: #FFFFFF
-}*/
-
-/*a.publications:hover,
-a.publications:focus {
-  background-color: #286090;
-}*/
-
 /*set custom link color for publication section...Probably one can default this in the bg-primary definition*/*/
 #pub a:link {
 	color: #FFFFFF;
@@ -222,13 +199,6 @@ a:active {
 	color: #e5e5e5;
   text-decoration: none;
 }
-
-#CV_button:link,
-#CV_button:visited,
-#CV_button:hover,
-#CV_button:active {
-	color: #000000;
-  text-decoration: none;
 }
 
 
