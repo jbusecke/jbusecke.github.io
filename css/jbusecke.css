@@ -195,6 +195,7 @@ hr.small {
     color: #FFFFFF;
 }
 
+.paper a:link,
 .paper a:active,
 .paper a:focus {
     color: #FFFFFF;
