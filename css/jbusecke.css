@@ -24,9 +24,9 @@ body {
 }
 
 /* Custom academicons */
-ul.social-buttons {
+/*ul.social-buttons {
     margin-bottom: 20px;
-}
+}*/
 
 ul.social-buttons li a {
     display: block;
@@ -38,9 +38,9 @@ ul.social-buttons li a {
     outline: 0;*/
     color: #222;
     background-color: #333;
-    /*-webkit-transition: all .3s;
+    -webkit-transition: all .3s;
     -moz-transition: all .3s;
-    transition: all .3s;*/
+    transition: all .3s;
 }
 
 ul.social-buttons li a:hover,
