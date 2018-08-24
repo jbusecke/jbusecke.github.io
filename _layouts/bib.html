@@ -1,0 +1,21 @@
+---
+---
+
+
+{{ reference }}
+
+{% assign filename = entry.key | append: ".pdf" %}
+{% for static_file in site.static_files %}
+    {% if static_file.path contains filename %}
+        {% assign pdf = true %}
+    {% endif %}
+{% endfor %}
+
+{% if pdf %}
+<a href="http://jbusecke.github.io/papers/{{ filename }}">PDF</a>
+{% endif %}
+{% if entry.doi %}
+<a href="http://doi.org/{{ entry.doi }}">online</a>
+{% endif %}
+<a data-badge-popover="bottom" data-badge-type="1" data-doi="{{ entry.doi }}"
+data-condensed="true" data-hide-no-mentions="true" class="altmetric-embed"></a>

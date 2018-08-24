@@ -1,4 +1,84 @@
-name: Julius Busecke
+url: https://y7kim.github.io
+baseurl:
+plugins: ['jekyll/scholar']
+
+# Site settings
+title: Julius Busecke
+email: jbusecke@princeton.edu
+description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+
+# # Team names, titles and social links
+# people:
+# - name: Kay Garland
+#   pic: 1
+#   position: Lead Designer
+#   social:
+#     - title: twitter
+#       url: #
+#     - title: facebook
+#       url: #
+#     - title: stack-overflow
+#       url: #
+#
+# - name: Larry Parker
+#   pic: 2
+#   position: Lead Marketer
+#   social:
+#     - title: twitter
+#       url: #
+#     - title: facebook
+#       url: #
+#     - title: linkedin
+#       url: #
+#
+# - name: Diana Petersen
+#   pic: 3
+#   position: Lead Developer
+#   social:
+#     - title: twitter
+#       url: #
+#     - title: facebook
+#       url: #
+#     - title: google-plus
+#       url: #
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+# stack-overflow bitbucket
+social:
+  - title: twitter
+    url: http://twitter.com/JuliusBusecke
+  # - title: linkedin
+  #   url: https://www.linkedin.com/in/julius-busecke-a47027117/
+  - title: github
+    url: http://github.com/jbusecke
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: 408A Guyot Hall
+  - line: Princeton, NJ 08544
+  - line: USA
+
+# Build settings
 markdown: kramdown
-include: ['_pages']
-baseurl: /jbusecke.github.io
+permalink: pretty
+
+# Bibliography settings
+scholar:
+  style: american-meteorological-society
+  locale: en
+
+  sort_by: year, month
+  order: ascending
+
+  source: ./_bibliography
+  bibliography: references.bib
+  bibliography_template: bib
+
+  replace_strings: true
+  join_strings:    true
+
+  # details_dir:    bibliography
+  # details_layout: bibtex.html
+  # details_link:   Details
+
+  query: "@*"

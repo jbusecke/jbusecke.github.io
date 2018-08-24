@@ -1,0 +1,20 @@
+---
+title: Mesoscale Mixing
+subtitle: "How do small scale dynamics influence the climate?"
+layout: default
+modal-id: 2
+date: 2014-07-18
+img: mesoscale.png
+thumbnail: mesoscale-thumb.png
+alt: image-alt
+project-date: April 2014
+client: Start Bootstrap
+category: Web Development
+description: "The 'weather' of the ocean consists of turbulent fluctuations of velocities, just like in the atmosphere. The 'storm systems' of the ocean are called mesoscale eddies.
+They are much smaller than similar features in the atmosphere, only several hundred kilometers across, which makes it really hard to observe them and many modern climate and earth system models cannot resolve this process properly.
+
+Mesoscale eddies are important for the transport of properties (tracers) like heat, salt, carbon and nutrients.
+
+I primarily study the cause and effects for variations in the tracer transport and how such variations influence the climate system as a whole."
+
+---

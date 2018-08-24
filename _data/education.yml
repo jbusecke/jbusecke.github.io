@@ -1,0 +1,32 @@
+# Education steps
+degrees:
+  - title: "PhD"
+    year: 2017
+    location: New York
+    country: USA
+    institution: Columbia University
+    advisor: "Prof. Dr. Arnold Gordon"
+    major: Physical Oceanography
+
+  - title: "M.Phil"
+    year: 2016
+    location: New York
+    country: USA
+    institution: Columbia University
+    advisor: "Prof. Dr. Arnold Gordon"
+    major: Physical Oceanography
+
+  - title: "M.A."
+    location: New York
+    country: USA
+    institution: Columbia University
+    advisor: "Prof. Dr. Arnold Gordon"
+    major: Physical Oceanography
+
+  - title: "B.Sc."
+    year: 2010
+    location: Kiel
+    country: Germany
+    institution: University of Kiel / geomar
+    advisor: "Prof. Dr. Arne Biastoch"
+    major: "Physics of the earth system: Oceanography-Meteorology-Geophysics"

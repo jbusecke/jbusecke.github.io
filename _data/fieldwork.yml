@@ -1,0 +1,26 @@
+# Field work
+cruises:
+  - ship: B/O SARMIENTO DE GAMBOA
+    date: Mar/Apr 2013
+    region: Subtropical North Atlantic
+    responsibilities:
+      - text: Assistance with sampling strategy
+      - text: Underway sampling
+      - text: Data viz/management
+  - ship: R/V KNORR
+    date: Sep/Oct 2012
+    region: Subtropical North Atlantic
+    responsibilities:
+      - text: CTD/LADCP
+      - text: Underway sampling
+      - text: Data viz/management
+  - ship: R/V NATHANIEL B. PALMER
+    date: Jan/Feb 2011
+    region: Ross Sea, Antarctica
+    responsibilities:
+      - text: CTD/LADCP
+  - ship: R/V METEOR
+    date: Jan/Feb 2009
+    region: Eastern subtropical North Atlantic
+    responsibilities:
+      - text: CTD

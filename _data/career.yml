@@ -1,0 +1,17 @@
+# Career stages
+appointments:
+  - title: Postdoctoral Research Associate
+    location: Princeton University
+    dates: 2017 -
+    text: I am currently a Postdoc in <a href=http://resplandy.princeton.edu >Prof. Resplandys</a> research group.
+    img: img/about/princeton.png
+  - title: Graduate Research Associate
+    location: Columbia University
+    dates: 2010 - 2017
+    text: I did my PhD with <a href=https://www.ldeo.columbia.edu/user/agordon >Prof. Gordon</a> at the Lamont-Doherty Earth Observatory.
+    img: img/about/columbia.png
+  - title: Research Assistant
+    location: GEOMAR/University of Kiel
+    dates: 2008 - 2010
+    text: My BS thesis was supervised by <a href=https://www.geomar.de/en/staff/fb1/tm/abiastoch/>Prof. Biastoch</a>.
+    img: img/about/kiel.png
