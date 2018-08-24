@@ -27,7 +27,7 @@ task :publish => [:generate] do
     Dir.chdir tmp
 
     system "git init"
-    system "git add ."
+    system "git add -f ." # JB change to include the paper pdf files (ignored by my global gitignore)
     message = "Site updated at #{Time.now.utc}"
     system "git commit -m #{message.inspect}"
     system "git remote add origin git@github.com:#{GITHUB_REPONAME}.git"
