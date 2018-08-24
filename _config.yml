@@ -5,8 +5,10 @@ plugins: ['jekyll/scholar']
 # Site settings
 title: Julius Busecke
 email: jbusecke@princeton.edu
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-
+description: "Julius Busecke is a Postdoctoral Research Associate at Princeton University, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry."
+author: Julius Busecke
+keywords: “Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing “
+robots: index
 # # Team names, titles and social links
 # people:
 # - name: Kay Garland
