@@ -19,15 +19,21 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="col-md-4">
+                    {% include social_buttons.html %}
+                </div>
+                <!-- <div class="col-md-4">
                     <ul class="list-inline social-buttons">
                         {% for network in site.social %}
                         <li><a href="{{ network.url }}"><i class="fa fa-{{ network.title }}"></i></a>
                         </li>
                         {% endfor %}
+                        {% for network in site.social_academic %}
+                        <li><a href="{{ network.url }}"><i class="ai ai-{{ network.title }}"></i></a>
+                        </li>
+                        {% endfor %}
                     </ul>
-                </div>
+                </div> -->
 
 
             </div>

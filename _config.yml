@@ -54,6 +54,12 @@ social:
   - title: github
     url: http://github.com/jbusecke
 
+social_academic:
+  # - title: figshare
+  #   url: https://figshare.com/authors/_/3809782
+  - title: google-scholar
+    url: https://scholar.google.de/citations?hl=de&user=nXQo4RkAAAAJ
+
 # Postal address (add as many lines as necessary)
 address:
   - line: 408A Guyot Hall
