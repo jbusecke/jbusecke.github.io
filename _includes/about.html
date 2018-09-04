@@ -87,7 +87,8 @@
                 <div class="col-lg-12 text-center">
                   <h3 class="heading">Public Appearances</h3>
                   <ul class="cv_list">
-                    {% for pres in site.data.presentations %}
+                    {% assign sorted = (site.data.presentations | sort: 'year') | reverse %}
+                    {% for pres in sorted %}
                       {% if pres.pick %}
                       <li>
                       {{pres.title}}
