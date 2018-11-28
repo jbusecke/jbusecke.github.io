@@ -1,0 +1,40 @@
+- contact: Alexander Loyd
+  date: 10/18/2018
+  description: Guest Lecture
+  duration: 45 min
+  invited: 'Yes'
+  location: Hun School, Princeton
+  purpose: Outreach
+  title: Invited Guest Lecture
+- contact: Laure Resplandy
+  date: 10/24/2018
+  description: Guest Lecture and Lab
+  duration: 300 min
+  invited: 'No'
+  location: Princeton University
+  purpose: Academic
+  title: ENV367-GEO367_F2018
+- contact: Tiffany Shaw Jerry McManus
+  date: '2013'
+  description: Teaching Assistant
+  duration: ''
+  invited: 'No'
+  location: Columbia University
+  purpose: Academic
+  title: Earth Systems - Climate EESCV2100
+- contact: Arnold Gordon
+  date: '2012'
+  description: Teaching Assistant
+  duration: ''
+  invited: 'No'
+  location: Columbia University
+  purpose: Academic
+  title: Intro to Physical Oceanography EESCW4925
+- contact: Arnold Gordon
+  date: '2012'
+  description: Teaching Assistant
+  duration: ''
+  invited: 'No'
+  location: Columbia University
+  purpose: Academic
+  title: 'Earth Oceans and Atmospheres EESCW4930 '
