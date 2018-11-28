@@ -10,6 +10,7 @@ appointments:
     dates: 2010 - 2017
     text: I did my PhD with <a href=https://www.ldeo.columbia.edu/user/agordon >Prof. Gordon</a> at the Lamont-Doherty Earth Observatory.
     img: img/about/columbia.png
+  # - title Columbia intern, what are the actual details?
   - title: Research Assistant
     location: GEOMAR/University of Kiel
     dates: 2008 - 2010
