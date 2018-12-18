@@ -113,6 +113,32 @@
                   </ul>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h3 class="heading">Session Organizer/Co-Convener</h3>
+                  <ul class="cv_list">
+                    {% for sess in site.data.sessions %}
+                      <li>
+                      {{sess.occasion}} ({{sess.kind}}) <a href={{sess.link}}> {{sess.title}} </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h3 class="heading">Reviewer/Panelist</h3>
+                  <ul class="cv_list">
+                    {% for peer in site.data.peerreview %}
+                      {% if forloop.last == true %}
+                        {{peer.title}}
+                      {% else %}
+                        {{peer.title}},
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+            </div>
 
         </div>
     </section>

@@ -1,6 +1,6 @@
 ---
 title: Mesoscale Mixing
-subtitle: "How do small scale dynamics influence the climate?"
+subtitle: "Small scale dynamics influence the climate"
 layout: default
 modal-id: 2
 date: 2014-07-18

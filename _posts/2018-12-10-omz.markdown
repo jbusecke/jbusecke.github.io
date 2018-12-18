@@ -1,0 +1,19 @@
+---
+title: Oxygen Minimum Zones
+subtitle: Will they expand or shrink?
+layout: default
+modal-id: 1
+date: 2015-07-16
+img: omz.png
+thumbnail: omz-thumb.png
+alt: image-alt
+description: "Oxygen Minimum Zones in the Ocean
+Oxygen in the ocean is essential to marine life, just like for many land-dwelling organisms.
+Contrary to the atmosphere though, oxygen in the ocean is not evenly distributed. High biological production at the surface, leading to sinking organic matter consuming oxygen at depth, and sluggish ocean circulation lead to large areas with little to no oxygen in the water — Oxygen Minimum Zones —.
+Oxygen Minimum Zones are important for the global climate and economy due to their relevance for the release of Nitrogen from the Ocean and marine habitats.
+Oxygen in the whole ocean is predicted, and already observed, to decrease due to increased stratification and decreased solubility at higher temperatures.
+The story about the Oxygen Minimum Zones is more complicated, though.
+These structures are a result of carefully balanced processes, which by themselves are very strong. Predicting how exactly each of these processes is going to behave is a challenge: Even small errors in the circulation in climate models can lead to strong changes in the oxygen field, making it essential to understand all processes that are at play.
+I currently investigate the influence of the Equatorial Undercurrent, a very strong subsurface current in the equatorial Pacific, for the position and variations in the Oxygen Minimum Zones."
+
+---
