@@ -1,3 +1,23 @@
+- contact: Ryan P. Abernathey
+  email: rpa@columbia.edu
+  date: 11/12/2019
+  description: Interactive Guest lecture
+  duration: 75 min
+  invited: 'No'
+  location: Columbia University
+  purpose: Academic
+  title: Working with output from general circulation models using xesmf and xgcm
+  link: https://earth-env-data-science.github.io/lectures/working_with_gcm_data.html
+- contact: Adam C. Maloof
+  email: maloof@Princeton.EDU
+  date: 10/14/2019
+  description: Interactive lecture
+  duration: 45 min
+  invited: 'No'
+  location: Princeton University
+  purpose: Academic
+  title: Junior student colloquium: Plotting maps in python
+  link: https://mybinder.org/v2/gh/jbusecke/teaching/master?filepath=notebooks%2FTutorial_plotting_maps.ipynb
 - contact: Alexander Loyd
   date: 10/18/2018
   description: Guest Lecture
