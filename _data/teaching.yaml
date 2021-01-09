@@ -16,7 +16,7 @@
   invited: 'No'
   location: Princeton University
   purpose: Academic
-  title: Junior student colloquium: Plotting maps in python
+  title: 'Junior student colloquium: Plotting maps in python'
   link: https://mybinder.org/v2/gh/jbusecke/teaching/master?filepath=notebooks%2FTutorial_plotting_maps.ipynb
 - contact: Alexander Loyd
   date: 10/18/2018
