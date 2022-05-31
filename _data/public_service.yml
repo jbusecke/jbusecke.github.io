@@ -1,1 +1,50 @@
 # Add all reviews and panels to this file
+journal_review:
+  - short: ''
+    since: '2020' #not sure about this one
+    title: 'Nature'
+  - short: 'GRL'
+    since: '2020' #not sure about this one
+    title: 'Geophysical Research Letters' 
+  - short: 'JGR: Oceans'
+    since: '2014'
+    title: 'Journal of Geophysical Research: Oceans'
+  - short: ''
+    since: '2017'
+    title: 'Journal of Oceanography'
+  - short: 'GBC'
+    since: '2018'
+    title: 'Global Biogeochemical Cycles'
+  - short: ''
+    since: '2019'
+    title: 'Deep-Sea Research Part II'
+  - short: 'BG'
+    since: '2019'
+    title: 'Biogeosciences'
+
+proposal_review:
+    # I guess these should go in the public service part.
+  - agency: 'NASA'
+    date: '2016, 2018, 2022'
+  - agency: 'National Science Foundation'
+    date: '2021'
+
+session_organizer:
+  - kind: oral
+    # link: missing
+    occasion: Ocean Science Meeting 2020
+    role: Session Co-convener
+    title: 'OSM20 PS011 - Vertical Transport: Pathways from the Surface to the Interior'
+    
+  - kind: oral
+    link: https://ativsoftware.com/appinfo.php?page=Session&project=AGU18&server=eventpilotadmin.com&id=s57614-38514
+    occasion: AGU18
+    role: Session Co-convener
+    title: 'OS51B: Temporal Variability in Oceanic Mesoscale Activity, from Seasonal
+      to Multidecadal Records I'
+  - kind: poster
+    link: https://eventpilotadmin.com/web/page.php?page=Session&project=AGU18&id=s44635-39087&title=Related%20Sessions
+    occasion: AGU18
+    role: Session Co-convener
+    title: 'OS51B: Temporal Variability in Oceanic Mesoscale Activity, from Seasonal
+      to Multidecadal Records II'
