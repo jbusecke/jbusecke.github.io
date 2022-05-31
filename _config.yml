@@ -5,7 +5,7 @@ plugins: ['jekyll/scholar']
 # Site settings
 title: Julius Busecke
 email: julius@ldeo.columbia.edu
-description: "Julius Busecke is a Postdoctoral Research Associate at Princeton University, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry."
+description: "Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry."
 author: Julius Busecke
 keywords: “Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing “
 robots: index
