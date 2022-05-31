@@ -4,45 +4,11 @@ plugins: ['jekyll/scholar']
 
 # Site settings
 title: Julius Busecke
-email: jbusecke@princeton.edu
+email: julius@ldeo.columbia.edu
 description: "Julius Busecke is a Postdoctoral Research Associate at Princeton University, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry."
 author: Julius Busecke
 keywords: “Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing “
 robots: index
-# # Team names, titles and social links
-# people:
-# - name: Kay Garland
-#   pic: 1
-#   position: Lead Designer
-#   social:
-#     - title: twitter
-#       url: #
-#     - title: facebook
-#       url: #
-#     - title: stack-overflow
-#       url: #
-#
-# - name: Larry Parker
-#   pic: 2
-#   position: Lead Marketer
-#   social:
-#     - title: twitter
-#       url: #
-#     - title: facebook
-#       url: #
-#     - title: linkedin
-#       url: #
-#
-# - name: Diana Petersen
-#   pic: 3
-#   position: Lead Developer
-#   social:
-#     - title: twitter
-#       url: #
-#     - title: facebook
-#       url: #
-#     - title: google-plus
-#       url: #
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 # stack-overflow bitbucket
@@ -62,8 +28,8 @@ social_academic:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 408A Guyot Hall
-  - line: Princeton, NJ 08544
+  - line: LDEO, 61 Rte 9W, Oceanography 206
+  - line: Palisades NY 10964
   - line: USA
 
 # Build settings
