@@ -1,144 +1,152 @@
 <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                    <br>
-                    <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
-                </div>
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">About</h2>
+        <br>
+        <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="timeline">
+          {% for job in site.data.career.appointments %}
+          <li class="{% cycle 'timeline', 'timeline-inverted' %}">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="{{ job.img }}" alt="">
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        {% for job in site.data.career.appointments %}
-                        <li class="{% cycle 'timeline', 'timeline-inverted' %}">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{ job.img }}" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>{{ job.dates }}</h4>
-                                    <h5 class="subheading">{{ job.title }} {{ job.location }}</h5>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">{{ job.text}}</p>
-                                </div>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>{{ job.dates }}</h4>
+                <h5 class="subheading">{{ job.title }} {{ job.location }}</h5>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">{{ job.text}}</p>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <h3 class="heading">Education</h3>
-                    <ul class="cv_list">
-                      {% for degree in site.data.education.degrees %}
-                      <li>
-                        <h5 class="subheading text-muted">{{ degree.year}} </h5>
-                        <h6 class="subheading">{{ degree.title}} ({{ degree.institution}})</h6>
-                        <p>
-                        Advisor: {{ degree.advisor}}
-                        <br>
-                        Major: {{ degree.major }}
-                        </p>
-                        <br>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Education</h3>
+        <ul class="cv_list">
+          {% for degree in site.data.education.degrees %}
+          <li>
+            <h5 class="subheading text-muted">{{ degree.year}} </h5>
+            <h6 class="subheading">{{ degree.title}} ({{ degree.institution}})</h6>
+            <p>
+              Advisor: {{ degree.advisor}}
+              <br>
+              Major: {{ degree.major }}
+            </p>
+            <br>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
 
-                <div class="col-md-6 text-center">
-                    <h3 class="heading">Fieldwork</h3>
-                    <ul class="cv_list">
-                      {% for cruise in site.data.fieldwork.cruises %}
-                      <li>
-                        <h5 class="subheading text-muted">{{ cruise.date}} </h5>
-                        <h6 class="subheading">{{ cruise.ship}} ({{ cruise.region}})</h6>
-                        <p>
-                          Responsibilities:<br>
-                          {% for res in cruise.responsibilities %}
-                          {{res.text}}
-                          {% endfor %}
-                        </p>
-                        <br>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h3 class="heading">Awards</h3>
-                  <ul class="cv_list">
-                    {% for award in site.data.awards.awards %}
-                    <li>
-                      {{award.title}} ({{award.year}})
-                    </li>
-                    <br>
-                    {% endfor %}
-                  </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h3 class="heading">Public Appearances</h3>
-                  <ul class="cv_list">
-                    {% assign sorted = (site.data.presentations | sort: 'year') | reverse %}
-                    {% for pres in sorted %}
-                      {% if pres.pick %}
-                      <li>
-                      {{pres.title}}
-                      <p class="text-center text-muted"> {{pres.occasion}}   {{pres.year}}  {{pres.location}}</p>
-                      </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h3 class="heading">Teaching</h3>
-                  <ul class="cv_list">
-                    {% for teach in site.data.teaching %}
-                      <li>
-                      {{teach.location}} ({{teach.date}})
-                      <p class="text-center text-muted"> {{teach.title}} </p>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h3 class="heading">Session Organizer/Co-Convener</h3>
-                  <ul class="cv_list">
-                    {% for sess in site.data.sessions %}
-                      <li>
-                      {{sess.occasion}} ({{sess.kind}}) <a href={{sess.link}}> {{sess.title}} </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h3 class="heading">Reviewer/Panelist</h3>
-                  <ul class="cv_list">
-                    {% for peer in site.data.peerreview %}
-                      {% if forloop.last == true %}
-                        {{peer.title}}
-                      {% else %}
-                        {{peer.title}},
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </div>
-            </div>
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Fieldwork</h3>
+        <ul class="cv_list">
+          {% for cruise in site.data.fieldwork.cruises %}
+          <li>
+            <h5 class="subheading text-muted">{{ cruise.date}} </h5>
+            <h6 class="subheading">{{ cruise.ship}} ({{ cruise.region}})</h6>
+            <p>
+              Responsibilities:<br>
+              {% for res in cruise.responsibilities %}
+              {{res.text}}
+              {% endfor %}
+            </p>
+            <br>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
 
-        </div>
-    </section>
+    <hr>
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 class="heading">Public Appearances</h3>
+        <ul class="cv_list">
+          {% assign sorted = (site.data.presentations | sort: 'year') | reverse %}
+          {% for pres in sorted %}
+          {% if pres.pick %}
+          <li>
+            {{pres.title}}
+            <p class="text-center text-muted"> {{pres.occasion}} {{pres.year}} {{pres.location}}</p>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Journal Peer Review</h3>
+        <ul class="cv_list">
+          {% for peer in site.data.public_service.journal_review %}
+          <li>
+            {% if forloop.last == true %}
+            {{peer.title}}
+            {% else %}
+            {{peer.title}},
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Reviewer/Panelist</h3>
+        <ul class="cv_list">
+          {% for panel in site.data.public_service.proposal_review %}
+          {{panel.agency}}: {{panel.date}}
+          {% endfor %}
+        </ul>
+        <h3 class="heading">Session Organizer/Co-Convener</h3>
+        <ul class="cv_list">
+          {% for sess in site.data.public_service.session_organizer %}
+          <li>
+            {{sess.occasion}} ({{sess.kind}}) <a href={{sess.link}}> {{sess.title}} </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Teaching</h3>
+        <ul class="cv_list">
+          {% for teach in site.data.teaching %}
+          <li>
+            {{teach.location}} ({{teach.date}})
+            <p class="text-center text-muted"> {{teach.title}} </p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6 text-center">
+        <h3 class="heading">Awards</h3>
+        <ul class="cv_list">
+          {% for award in site.data.awards.awards %}
+          <li>
+            {{award.title}} ({{award.year}})
+          </li>
+          <br>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>

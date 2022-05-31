@@ -1,16 +1,20 @@
 # Career stages
 appointments:
+  - title: Associate Research Scientist
+    location: Columbia University
+    dates: since 2020
+    text: I am currently an Associate Research Scientist in <a href=https://ocean-transport.github.io >Prof. Abernatheys</a> Climate Data Science Lab.
+    img: img/about/columbia.png
   - title: Postdoctoral Research Associate
     location: Princeton University
-    dates: since 2017
-    text: I am currently a Postdoc in <a href=http://resplandy.princeton.edu >Prof. Resplandys</a> research group.
+    dates: 2017-2020
+    text: I did my Postdoc in <a href=http://resplandy.princeton.edu >Prof. Resplandys</a> research group.
     img: img/about/princeton.png
   - title: Graduate Research Associate
     location: Columbia University
     dates: 2010 - 2017
     text: I did my PhD with <a href=https://www.ldeo.columbia.edu/user/agordon >Prof. Gordon</a> at the Lamont-Doherty Earth Observatory.
     img: img/about/columbia.png
-  # - title Columbia intern, what are the actual details?
   - title: Research Assistant
     location: GEOMAR/University of Kiel
     dates: 2008 - 2010
