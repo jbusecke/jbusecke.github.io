@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Julius Busecke</title>
+    <description>Julius Busecke is a Postdoctoral Research Associate at Princeton University, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry.</description>
+    <link>https://y7kim.github.io/</link>
+    <atom:link href="https://y7kim.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 31 May 2022 12:46:26 -0400</pubDate>
+    <lastBuildDate>Tue, 31 May 2022 12:46:26 -0400</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>Oxygen Minimum Zones</title>
+        <description>
+</description>
+        <pubDate>Thu, 16 Jul 2015 00:00:00 -0400</pubDate>
+        <link>https://y7kim.github.io/2015/07/16/omz/</link>
+        <guid isPermaLink="true">https://y7kim.github.io/2015/07/16/omz/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Mesoscale Mixing</title>
+        <description>
+</description>
+        <pubDate>Fri, 18 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://y7kim.github.io/web%20development/2014/07/18/eddymix/</link>
+        <guid isPermaLink="true">https://y7kim.github.io/web%20development/2014/07/18/eddymix/</guid>
+        
+        
+        <category>Web Development</category>
+        
+      </item>
+    
+  </channel>
+</rss>
