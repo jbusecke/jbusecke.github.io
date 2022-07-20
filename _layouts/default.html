@@ -2,15 +2,13 @@
 <html>
   {% include head.html %}
     <body id="page-top" class="index">
-
-    {% include header.html %}
-    {% include research.html %}
-    {% include tools.html %}
-    {% include papers.html %}
-    {% include about.html %}
-    {% include footer.html %}
+    {% include navbar.html %}
+    
+    {{ content }}
     {% include modals.html %}
+    {% include footer.html %}
     {% include js.html %}
+    
 
     </body>
 </html>

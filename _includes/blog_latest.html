@@ -1,0 +1,23 @@
+<!-- Latest Blog Posts -->
+
+<section id="blog-latest">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Latest Blog Posts</h2>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="posts">
+                {% for post in site.posts limit:3 %}
+                    <li>
+                    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    {{ post.excerpt }}
+                    </li>
+                {% endfor %}
+                </ul>
+        </div>
+    </div>
+</section>
+
