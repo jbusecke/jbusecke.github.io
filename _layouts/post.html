@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body id="page-top">
+        {% include head.html %}
+        {% include navbar_post.html %}
+        <header style="background-image: url('{{ site.baseurl }}/img/posts/{{ site.title }}.jpg')"">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">{{ page.title }}</div>
+                    <div class="intro-heading">{{ page.subtitle }}</div>
+                        <span class="meta">
+                            {{ page.date | date: '%B %d, %Y' }}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article>
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="justify-content-center">
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        {% include footer.html %}
+        {% include js.html %}
+    </body>
+</html>

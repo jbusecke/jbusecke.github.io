@@ -1,14 +1,21 @@
-url: https://y7kim.github.io
+url: 'https://www.juliusbusecke.com'
 baseurl:
-plugins: ['jekyll/scholar']
+plugins: 
+  - 'jekyll/scholar'
+  - 'jekyll-feed'
+include:
+  - research_topics
 
 # Site settings
 title: Julius Busecke
 email: julius@ldeo.columbia.edu
 description: "Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry."
 author: Julius Busecke
-keywords: “Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing “
+keywords: “Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing, Open Science, Open Source, Dev Ops, Cloud Computing, Climate Science,  “
 robots: index
+collections:
+  - research_topics
+
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 # stack-overflow bitbucket

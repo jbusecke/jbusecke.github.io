@@ -19,12 +19,12 @@ body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.75;
 }
 
 p.large {
-    font-size: 16px;
+    font-size: 17px;
 }
 
 a,
@@ -64,6 +64,12 @@ h6 {
 .img-circle {
     color: #222
 }
+
+.img-fluid {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+/* There should be a way to only apply this styling in a custom div, e.g. blog picture? */
 
 .bg-light-gray {
     background-color: #f7f7f7;
@@ -278,7 +284,8 @@ fieldset[disabled] .btn-xl.active {
 
 header {
     text-align: center;
-    color: #fff;
+    color: #252525;
+    background-color: #757575;
     background-attachment: scroll;
     background-image: url('{{ site.baseurl }}/img/header-bg.jpg');
     background-position: center center;
@@ -297,32 +304,32 @@ header .intro-text {
 header .intro-text .intro-lead-in {
     margin-bottom: 25px;
     font-family: {{ site.data.template.font.secondary }};
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 700;
-    line-height: 22px;
+    line-height: 30px;
 }
 
 header .intro-text .intro-heading {
     margin-bottom: 25px;
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
-    font-size: 20px;
+    font-size: 15px;
     font-style: italic;
-    line-height: 20px;
+    line-height: 15px;
 }
 
 @media(min-width:768px) {
     header .intro-text {
-        padding-top: 300px;
-        padding-bottom: 200px;
+        padding-top: 150px;
+        padding-bottom: 100px;
     }
 
     header .intro-text .intro-lead-in {
         margin-bottom: 25px;
         font-family: {{ site.data.template.font.secondary }};
-        font-size: 22px;
+        font-size: 60px;
         font-weight: 700;
-        line-height: 22px;
+        line-height: 60px;
     }
 
     header .intro-text .intro-heading {
@@ -901,4 +908,30 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #{{ site.data.template.color.primary }};
+}
+
+article {
+    padding: 50px 0;
+}
+
+
+@media(min-width:768px) {
+    article {
+        padding: 100px 0;
+    }
+}
+
+.container-fluid {
+    width: 80%;
+}
+
+@media(min-width:768px) {
+    .container-fluid {
+        width: 65%;
+    }
+}
+
+/* I would like to apply this just to the article, but somehow it doenst work... */
+li {
+    padding: 10px;
 }
