@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <body id="page-top">
+        <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Renaming published python packages</title>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content="Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry.">
+    <meta name="author" content="Julius Busecke">
+    <meta name="keywords" content="“Julius Busecke, J Busecke, Busecke,Ocean, Oceanography, Salinity, Freshwater, Upper Ocean, Mixing, Open Science, Open Source, Dev Ops, Cloud Computing, Climate Science,  “">
+    <meta name="robots" content="index" />
+    <link rel="canonical" href="https://www.juliusbusecke.com/2022/07/20/renaming/">
+
+
+    <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/academicons/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+        <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand page-scroll" href=/index.html>Julius Busecke</a>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- If I should find out a way to 'globally' link the index page and the section id. I could get rid of this crutch and just use the regular navbar. -->
+        <header style="background-image: url('/img/posts/Julius Busecke.jpg')"">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">Renaming published python packages</div>
+                    <div class="intro-heading">Some tips and tricks to avoid headaches</div>
+                        <span class="meta">
+                            July 20, 2022
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article>
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="justify-content-center">
+                        <p>So you have decided to rename your package, but all your continuous integration, deployment to <a href="https://pypi.org">PyPi</a> and/or <a href="https://conda-forge.org/#page-top">conda-forge</a>, and automatic documentation generation with <a href="https://readthedocs.org">readthedocs</a> is already set up with the old name. The obvious fear is that everything will break and lead to a big ‘ol mess, but the process is actually easier than one might think if you follow these steps …</p>
+
+<p>I learned this the hard way recently, when I  went through the renaming of a package with - ahem - <a href="https://twitter.com/JuliusBusecke/status/1545521169419444224?s=20&amp;t=hCcJ36MLmjSeRPxiLkOW3g">mixed emotions</a> along the way.</p>
+
+<h2 id="why-tho">Why tho?</h2>
+<p>Why would you want to rename your package in the first place? The short answer is: <strong>Don’t do it if you don not absolutely have to</strong>. 
+More importantly, try to spend a bit more time to find a concise name when you create a repo, which might also coincidentally help you to refine the scope of your project. This is always a win-win in my eyes.</p>
+
+<p>But maybe you still need to rename your package. Wether that is due to the fact that you inadvertently (I promise!) created a name that is <a href="https://github.com/jbusecke/xmovie">NSFW</a> or maybe the scope of your project did change.<br />
+Whatever the reason is there seems to be <a href="https://twitter.com/JuliusBusecke/status/1547674960134426628?s=20&amp;t=kInsJ15bPRjtKWMFTplrQg">some interest</a>) in the community how to go about this. And thankfully it really isn’t that hard to do.</p>
+
+<h2 id="find-a-new-name">Find a new name</h2>
+<p>Whether you have a brilliant name idea right away or go through a longer <a href="https://github.com/jbusecke/xMIP/issues/124">name search</a>, the most important thing to do is to check that your new name is available on all the platforms you want to use it. 
+In my example experience this was actually turned out to be the biggest pain in the rear. For the renaming of <a href="https://github.com/jbusecke/xMIP"><code class="language-plaintext highlighter-rouge">cmip6_preprocessing</code></a> I initially wanted to use <code class="language-plaintext highlighter-rouge">pyMIP</code> but while this was available on Github, it turned out that someone published a PyPi package with that name without a connected Github name. We ended up with <a href="https://github.com/jbusecke/xMIP"><code class="language-plaintext highlighter-rouge">xMIP</code></a>, and I quite like the name.</p>
+
+<p>The biggest lesson I learned from this experience, is to check <strong>all</strong> the platforms you want to connect to the package:</p>
+<ul>
+  <li>GitHub</li>
+  <li>Pypi</li>
+  <li><a href="https://conda-forge.org/feedstock-outputs/">conda-forge</a></li>
+  <li>any other platform that is linked in some way to your package (readthedocs, …)</li>
+</ul>
+
+<h2 id="actually-renaming-the-package">Actually renaming the package</h2>
+
+<ol>
+  <li><strong>Backup</strong> all code locally in a separate location. You can never be too careful!</li>
+  <li><strong>Rename your package on Github</strong>. Go to your repo page, and navigate to <code class="language-plaintext highlighter-rouge">Settings &gt; General</code> and edit the <code class="language-plaintext highlighter-rouge">Repository Name</code>.<br />
+Thats it on the Github side!<br />
+Issues and Pull Requests are automatically migrated and the old url to your repo is automatically forwarded to the new one, which means you can keep your local repo as is and keep pushing from it, even though you might want to change the folder name and remotes just to keep things neat in the future.</li>
+  <li><strong>Make a renaming PR to your repo</strong>. The easiest way to rename things is to do a global search and replace. I however recommend to check each renaming instance manually to avoid e.g. breaking links to the readthedocs documentation (more on that below). Dont forget to rename the module folder and run pre-commit locally (since the order of imports and other little things might change with different naming). This eventually should pass all of your CI.</li>
+  <li><strong>Issue a test release</strong> on github to test if the automatic deployment to pypi (if you had that implemented in your repo like <a href="https://github.com/jbusecke/xMIP/blob/main/.github/workflows/pythonpublish.yaml">here</a> for example).
+<span style="background-color: #fcccc0">Before actually pulling the trigger, you should make sure that the token you use for pypi has global scope, rather than being restricted to your old namespace. Otherwise your deployment will inevitably break. You can replace the secrets with a new restricted token afterwards if you wish.</span>
+Double check that your package was indeed released to pypi. Then we can take care of the conda-forge feedstock</li>
+  <li>The last required step is <strong>editing the recipe in the conda-forge feedstock</strong>. Note that you should <em>NEVER rename the feedstock repo itself</em>, or you will <a href="https://twitter.com/condaforge/status/1544394452529299462?s=20&amp;t=ZdMEx0Lw2xDh7T7aBD2eAQ">break the conda-forge bots</a>. All you need to do is swap the <code class="language-plaintext highlighter-rouge">package.name</code> parameter in the <code class="language-plaintext highlighter-rouge">meta.yaml</code>.</li>
+</ol>
+
+<div class="text-center" style="padding-bottom: 50px">
+  <img src="/img/posts/renaming/conda-forge.png" class="img-fluid" style="max-width:100%" />
+  <p class="text-muted">Note how the feedstock still reflects the old name. This has to stay that way!</p>
+</div>
+
+<h2 id="nice-to-haves">Nice to haves</h2>
+<p>That is it with the basics. There are a few more things that might come in handy:</p>
+<ul>
+  <li>Have a new <strong>logo</strong> ready (ideally insert it at step 3 above). Someone might <a href="https://twitter.com/juliusbusecke/status/1547308270393720838?s=21&amp;t=uttUyU5szgNY4WOKpueqPA">shout out</a> your work right away after you made the name change 🤗.</li>
+  <li>Fix <strong>backward compatibility in PyPi</strong>. The <a href="https://stackoverflow.com/questions/61363534/whats-the-recommended-way-of-renaming-a-project-in-pypi">basic idea</a> is to release a ‘final’ version of your old name package manually that only contains your new package as a single dependency, so that users who do
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install old_name
+</code></pre></div>    </div>
+    <p>get the same package as folks who do</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install new_name
+</code></pre></div>    </div>
+    <p>There is also a <a href="https://github.com/simonw/pypi-rename">cookiecutter</a> that helps with the process. I still haven’t tried this, but will report back once done.</p>
+  </li>
+  <li>Consider whether you want to <strong>rename the readthedocs namespace</strong>. This has some caveats though. If done all the old links to the documentation will break. Contrary to the renaming in Github, there is currently no good way to forward these urls automatically. If you decide to go this route, you have to actually <a href="https://docs.readthedocs.io/en/stable/faq.html#how-do-i-change-my-project-slug-the-url-your-docs-are-served-at">email</a> the readthedocs team to ask for a name change.</li>
+</ul>
+
+<p>That’s it. Now enjoy your freshly renamed package!</p>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+
+          <footer class="bg-light-gray">
+        <div id="contact" class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Julius Busecke 2022</span>
+                </div>
+
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <!-- <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a> -->
+                        <h4><strong>Julius Busecke</strong></h4>
+                        <p>
+                        
+                        LDEO, 61 Rte 9W, Oceanography 206<br>
+                        
+                        Palisades NY 10964<br>
+                        
+                        USA<br>
+                        
+                        </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                        <ul class="list-inline social-buttons">
+        
+        <li><a href="http://twitter.com/JuliusBusecke"><i class="fa fa-twitter"></i></a>
+        </li>
+        
+        <li><a href="http://github.com/jbusecke"><i class="fa fa-github"></i></a>
+        </li>
+        
+        
+        <li><a href="https://scholar.google.de/citations?hl=de&user=nXQo4RkAAAAJ"><i class="ai ai-google-scholar"></i></a>
+        </li>
+        
+    </ul>
+
+                </div>
+                <!-- <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        
+                        <li><a href="http://twitter.com/JuliusBusecke"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        
+                        <li><a href="http://github.com/jbusecke"><i class="fa fa-github"></i></a>
+                        </li>
+                        
+                        
+                        <li><a href="https://scholar.google.de/citations?hl=de&user=nXQo4RkAAAAJ"><i class="ai ai-google-scholar"></i></a>
+                        </li>
+                        
+                    </ul>
+                </div> -->
+
+
+            </div>
+        </div>
+    </footer>
+
+         <!-- jQuery Version 1.11.0 -->
+    <script src="/js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/js/jqBootstrapValidation.js"></script>
+    <script src="/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/agency.js"></script>
+
+    <!-- Altmetric Badges -->
+    <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+
+    <!-- Google analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79598714-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    </body>
+</html>

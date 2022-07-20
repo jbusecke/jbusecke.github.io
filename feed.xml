@@ -3,33 +3,77 @@
   <channel>
     <title>Julius Busecke</title>
     <description>Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry.</description>
-    <link>https://y7kim.github.io/</link>
-    <atom:link href="https://y7kim.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Jun 2022 16:02:59 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2022 16:02:59 +0000</lastBuildDate>
+    <link>https://www.juliusbusecke.com/</link>
+    <atom:link href="https://www.juliusbusecke.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 20 Jul 2022 19:35:05 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Jul 2022 19:35:05 +0000</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
-        <title>Oxygen Minimum Zones</title>
-        <description>
+        <title>Renaming published python packages</title>
+        <description>&lt;p&gt;So you have decided to rename your package, but all your continuous integration, deployment to &lt;a href=&quot;https://pypi.org&quot;&gt;PyPi&lt;/a&gt; and/or &lt;a href=&quot;https://conda-forge.org/#page-top&quot;&gt;conda-forge&lt;/a&gt;, and automatic documentation generation with &lt;a href=&quot;https://readthedocs.org&quot;&gt;readthedocs&lt;/a&gt; is already set up with the old name. The obvious fear is that everything will break and lead to a big ‘ol mess, but the process is actually easier than one might think if you follow these steps …&lt;/p&gt;
+
+&lt;p&gt;I learned this the hard way recently, when I  went through the renaming of a package with - ahem - &lt;a href=&quot;https://twitter.com/JuliusBusecke/status/1545521169419444224?s=20&amp;amp;t=hCcJ36MLmjSeRPxiLkOW3g&quot;&gt;mixed emotions&lt;/a&gt; along the way.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-tho&quot;&gt;Why tho?&lt;/h2&gt;
+&lt;p&gt;Why would you want to rename your package in the first place? The short answer is: &lt;strong&gt;Don’t do it if you don not absolutely have to&lt;/strong&gt;. 
+More importantly, try to spend a bit more time to find a concise name when you create a repo, which might also coincidentally help you to refine the scope of your project. This is always a win-win in my eyes.&lt;/p&gt;
+
+&lt;p&gt;But maybe you still need to rename your package. Wether that is due to the fact that you inadvertently (I promise!) created a name that is &lt;a href=&quot;https://github.com/jbusecke/xmovie&quot;&gt;NSFW&lt;/a&gt; or maybe the scope of your project did change.&lt;br /&gt;
+Whatever the reason is there seems to be &lt;a href=&quot;https://twitter.com/JuliusBusecke/status/1547674960134426628?s=20&amp;amp;t=kInsJ15bPRjtKWMFTplrQg&quot;&gt;some interest&lt;/a&gt;) in the community how to go about this. And thankfully it really isn’t that hard to do.&lt;/p&gt;
+
+&lt;h2 id=&quot;find-a-new-name&quot;&gt;Find a new name&lt;/h2&gt;
+&lt;p&gt;Whether you have a brilliant name idea right away or go through a longer &lt;a href=&quot;https://github.com/jbusecke/xMIP/issues/124&quot;&gt;name search&lt;/a&gt;, the most important thing to do is to check that your new name is available on all the platforms you want to use it. 
+In my example experience this was actually turned out to be the biggest pain in the rear. For the renaming of &lt;a href=&quot;https://github.com/jbusecke/xMIP&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmip6_preprocessing&lt;/code&gt;&lt;/a&gt; I initially wanted to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyMIP&lt;/code&gt; but while this was available on Github, it turned out that someone published a PyPi package with that name without a connected Github name. We ended up with &lt;a href=&quot;https://github.com/jbusecke/xMIP&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xMIP&lt;/code&gt;&lt;/a&gt;, and I quite like the name.&lt;/p&gt;
+
+&lt;p&gt;The biggest lesson I learned from this experience, is to check &lt;strong&gt;all&lt;/strong&gt; the platforms you want to connect to the package:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GitHub&lt;/li&gt;
+  &lt;li&gt;Pypi&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://conda-forge.org/feedstock-outputs/&quot;&gt;conda-forge&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;any other platform that is linked in some way to your package (readthedocs, …)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;actually-renaming-the-package&quot;&gt;Actually renaming the package&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Backup&lt;/strong&gt; all code locally in a separate location. You can never be too careful!&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Rename your package on Github&lt;/strong&gt;. Go to your repo page, and navigate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Settings &amp;gt; General&lt;/code&gt; and edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Repository Name&lt;/code&gt;.&lt;br /&gt;
+Thats it on the Github side!&lt;br /&gt;
+Issues and Pull Requests are automatically migrated and the old url to your repo is automatically forwarded to the new one, which means you can keep your local repo as is and keep pushing from it, even though you might want to change the folder name and remotes just to keep things neat in the future.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Make a renaming PR to your repo&lt;/strong&gt;. The easiest way to rename things is to do a global search and replace. I however recommend to check each renaming instance manually to avoid e.g. breaking links to the readthedocs documentation (more on that below). Dont forget to rename the module folder and run pre-commit locally (since the order of imports and other little things might change with different naming). This eventually should pass all of your CI.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Issue a test release&lt;/strong&gt; on github to test if the automatic deployment to pypi (if you had that implemented in your repo like &lt;a href=&quot;https://github.com/jbusecke/xMIP/blob/main/.github/workflows/pythonpublish.yaml&quot;&gt;here&lt;/a&gt; for example).
+&lt;span style=&quot;background-color: #fcccc0&quot;&gt;Before actually pulling the trigger, you should make sure that the token you use for pypi has global scope, rather than being restricted to your old namespace. Otherwise your deployment will inevitably break. You can replace the secrets with a new restricted token afterwards if you wish.&lt;/span&gt;
+Double check that your package was indeed released to pypi. Then we can take care of the conda-forge feedstock&lt;/li&gt;
+  &lt;li&gt;The last required step is &lt;strong&gt;editing the recipe in the conda-forge feedstock&lt;/strong&gt;. Note that you should &lt;em&gt;NEVER rename the feedstock repo itself&lt;/em&gt;, or you will &lt;a href=&quot;https://twitter.com/condaforge/status/1544394452529299462?s=20&amp;amp;t=ZdMEx0Lw2xDh7T7aBD2eAQ&quot;&gt;break the conda-forge bots&lt;/a&gt;. All you need to do is swap the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.name&lt;/code&gt; parameter in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;meta.yaml&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;text-center&quot; style=&quot;padding-bottom: 50px&quot;&gt;
+  &lt;img src=&quot;/img/posts/renaming/conda-forge.png&quot; class=&quot;img-fluid&quot; style=&quot;max-width:100%&quot; /&gt;
+  &lt;p class=&quot;text-muted&quot;&gt;Note how the feedstock still reflects the old name. This has to stay that way!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;nice-to-haves&quot;&gt;Nice to haves&lt;/h2&gt;
+&lt;p&gt;That is it with the basics. There are a few more things that might come in handy:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Have a new &lt;strong&gt;logo&lt;/strong&gt; ready (ideally insert it at step 3 above). Someone might &lt;a href=&quot;https://twitter.com/juliusbusecke/status/1547308270393720838?s=21&amp;amp;t=uttUyU5szgNY4WOKpueqPA&quot;&gt;shout out&lt;/a&gt; your work right away after you made the name change 🤗.&lt;/li&gt;
+  &lt;li&gt;Fix &lt;strong&gt;backward compatibility in PyPi&lt;/strong&gt;. The &lt;a href=&quot;https://stackoverflow.com/questions/61363534/whats-the-recommended-way-of-renaming-a-project-in-pypi&quot;&gt;basic idea&lt;/a&gt; is to release a ‘final’ version of your old name package manually that only contains your new package as a single dependency, so that users who do
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install old_name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;get the same package as folks who do&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install new_name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;There is also a &lt;a href=&quot;https://github.com/simonw/pypi-rename&quot;&gt;cookiecutter&lt;/a&gt; that helps with the process. I still haven’t tried this, but will report back once done.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Consider whether you want to &lt;strong&gt;rename the readthedocs namespace&lt;/strong&gt;. This has some caveats though. If done all the old links to the documentation will break. Contrary to the renaming in Github, there is currently no good way to forward these urls automatically. If you decide to go this route, you have to actually &lt;a href=&quot;https://docs.readthedocs.io/en/stable/faq.html#how-do-i-change-my-project-slug-the-url-your-docs-are-served-at&quot;&gt;email&lt;/a&gt; the readthedocs team to ask for a name change.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That’s it. Now enjoy your freshly renamed package!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
-        <link>https://y7kim.github.io/2015/07/16/omz/</link>
-        <guid isPermaLink="true">https://y7kim.github.io/2015/07/16/omz/</guid>
+        <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://www.juliusbusecke.com/2022/07/20/renaming/</link>
+        <guid isPermaLink="true">https://www.juliusbusecke.com/2022/07/20/renaming/</guid>
         
-        
-      </item>
-    
-      <item>
-        <title>Mesoscale Mixing</title>
-        <description>
-</description>
-        <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-        <link>https://y7kim.github.io/web%20development/2014/07/18/eddymix/</link>
-        <guid isPermaLink="true">https://y7kim.github.io/web%20development/2014/07/18/eddymix/</guid>
-        
-        
-        <category>Web Development</category>
         
       </item>
     
