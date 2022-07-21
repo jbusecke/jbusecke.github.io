@@ -21,6 +21,9 @@ journal_review:
   - short: 'BG'
     since: '2019'
     title: 'Biogeosciences'
+  - short: 'pyOpenSci'
+    since: '2022'
+    title: 'pyOpenSci'
 
 proposal_review:
     # I guess these should go in the public service part.
