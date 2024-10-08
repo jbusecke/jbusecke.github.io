@@ -101,7 +101,7 @@ jobs:
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         id: netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: _site
           production-deploy: false
