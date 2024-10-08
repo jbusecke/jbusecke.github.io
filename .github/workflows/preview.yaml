@@ -25,7 +25,7 @@ jobs:
             let pullRequestNumber = ''
             let pullRequestHeadSHA = ''
             core.info('Finding pull request...')
-            const pullRequests = await github.pulls.list({owner: context.repo.owner, repo: context.repo.repo})
+            const pullRequests = await github.rest.pulls.list({owner: context.repo.owner, repo: context.repo.repo})
             for (let pullRequest of pullRequests.data) {
               if(pullRequest.head.sha === context.payload.workflow_run.head_commit.id) {
                   pullRequestHeadSHA = pullRequest.head.sha
@@ -53,7 +53,7 @@ jobs:
           body-includes: '${{ env.comment_message }}'
       - name: Create comment
         if: |
-          github.event.workflow_run.conclusion != 'success'
+          github.rest.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id == ''
         uses: peter-evans/create-or-update-comment@v4
@@ -64,7 +64,7 @@ jobs:
             🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
       - name: Update comment
         if: |
-          github.event.workflow_run.conclusion != 'success'
+          github.rest.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v4
@@ -76,18 +76,18 @@ jobs:
             🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
       - name: Download Artifact site
         if: |
-          github.event.workflow_run.conclusion == 'success'
+          github.rest.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         uses: dawidd6/action-download-artifact@v6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: deploy.yaml
-          run_id: ${{ github.event.workflow_run.id }}
+          run_id: ${{ github.rest.event.workflow_run.id }}
           name: site-zip
       - name: Unzip site
         if:  |
-          github.event.workflow_run.conclusion == 'success'
+          github.rest.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         run: |
@@ -97,7 +97,7 @@ jobs:
       # Push the site's HTML to Netlify and get the preview URL
       - name: Deploy to Netlify
         if: |
-          github.event.workflow_run.conclusion == 'success'
+          github.rest.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         id: netlify
@@ -113,7 +113,7 @@ jobs:
         timeout-minutes: 5
       - name: Update site Preview comment
         if: |
-          github.event.workflow_run.conclusion == 'success'
+          github.rest.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v4
