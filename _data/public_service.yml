@@ -33,12 +33,16 @@ proposal_review:
     date: '2021'
 
 session_organizer:
+  - kind: workshop
+    occasion: ICML 2024
+    title: ML4ESM Workshop
+    link: https://leap-stc.github.io/ml4esm-workshop/
+    role: Program Committee Member
   - kind: oral
     # link: missing
     occasion: Ocean Science Meeting 2020
     role: Session Co-convener
     title: 'OSM20 PS011 - Vertical Transport: Pathways from the Surface to the Interior'
-    
   - kind: oral
     link: https://ativsoftware.com/appinfo.php?page=Session&project=AGU18&server=eventpilotadmin.com&id=s57614-38514
     occasion: AGU18
