@@ -5,9 +5,66 @@
     <description>Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry.</description>
     <link>https://www.juliusbusecke.com/</link>
     <atom:link href="https://www.juliusbusecke.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 15 Feb 2025 17:51:29 +0000</pubDate>
-    <lastBuildDate>Sat, 15 Feb 2025 17:51:29 +0000</lastBuildDate>
+    <pubDate>Thu, 01 May 2025 16:11:41 +0000</pubDate>
+    <lastBuildDate>Thu, 01 May 2025 16:11:41 +0000</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>Reproducing Science Locally</title>
+        <description>&lt;p&gt;I recently &lt;a href=&quot;https://jbusecke.github.io/2025/02/15/burnout/&quot;&gt;quit my job&lt;/a&gt; and took an extended break, which was, in itself, glorious. It’s not that I generally feel glorious overall right now, as America is not just flirting but getting to second base with a fascist dictatorship and tearing down scientific achievements of the last centuries within months. But let’s leave that for another post …&lt;/p&gt;
+
+&lt;p&gt;One of the things I’ve been doing recently is finishing up some of the work in publications I’m involved in. I prototyped a way to &lt;a href=&quot;https://github.com/jbusecke/xMIP/issues/379&quot;&gt;extract citation information from metadata&lt;/a&gt; and this week I am addressing reviewer questions for a paper that is very near and dear to my heart (&lt;a href=&quot;https://eartharxiv.org/repository/view/7144/&quot;&gt;preprint&lt;/a&gt;). Part of the work in this paper involved creating a &lt;a href=&quot;https://github.com/xgcm/aerobulk-python&quot;&gt;python/xarray wrapper for a FORTRAN library called aerobulk&lt;/a&gt; which enables you to run the exact algorithms used in numerical simulations to determine the turbulent fluxes between the ocean and atmosphere. This worked well once we had all the dependencies in place, but we found several times that conflicts arose when the base image was updated, so a fully frozen/locked software environment seemed (and generally is) like the right choice to make our results actually reproducible on any platform.  We therefore &lt;a href=&quot;https://github.com/ocean-transport/scale-aware-air-sea/blob/main/Dockerfile&quot;&gt;‘layered’ our package&lt;/a&gt; on top of an existing &lt;a href=&quot;https://github.com/pangeo-data/pangeo-docker-images&quot;&gt;Pangeo docker image&lt;/a&gt; (the default environment on the hub) following the &lt;a href=&quot;https://docs.2i2c.org/admin/howto/environment/update-community-image/&quot;&gt;2i2c docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I did all of the very intense computation and the final plotting on the &lt;a href=&quot;https://leap.columbia.edu/leap-pangeo-3/leap-pangeo-sub/&quot;&gt;LEAP Jupyter Hub&lt;/a&gt; (provided by &lt;a href=&quot;https://2i2c.org/&quot;&gt;2i2c&lt;/a&gt;), but I no longer have access to it. Since spinning up a server via the hub was always super easy I never bothered to try out to run the docker images locally until now! I did not actually find any documentation on this, but there were very helpful discussions on the &lt;a href=&quot;https://github.com/2i2c-org/infrastructure/issues/1705&quot;&gt;2i2c infrastructure repo&lt;/a&gt; . So I figured I’d document this for myself and anyone who might be in a similar situation.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-you-need&quot;&gt;What you need&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A local docker installation ( I used &lt;a href=&quot;https://docs.docker.com/desktop/setup/install/mac-install/&quot;&gt;Docker Desktop for Mac&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;The docker registry URL (or endpoint). This will look something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myregistry.example.com/myuser/myimage:tag&lt;/code&gt; in my example I will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quay.io/jbusecke/scale-aware-air-sea:68b654d76dce&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;run-the-image&quot;&gt;Run the image&lt;/h2&gt;
+
+&lt;p&gt;The base command will be structured like this (replace all the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&apos;&amp;lt;...&amp;gt;&apos;&lt;/code&gt; with values of your choice):&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &amp;lt;your_port&amp;gt;:&amp;lt;your_port&amp;gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &amp;lt;path/to/your/notebook/repo&amp;gt;:/home/jovyan/repo &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; &amp;lt;your_name|optional&amp;gt; myregistry.example.com/myuser/myimage:tag jupyter lab &lt;span class=&quot;nt&quot;&gt;--ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0.0.0 &lt;span class=&quot;nt&quot;&gt;--port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;your_port&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You’ll have to wait for the image to be pulled (if this is the first time running it) and eventually you will get output that looks like this&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yada, yada, yada,
+...
+http://127.0.0.1:9000/?token=a13704b36331f073c869941e82104b0cd92c23f0bc41926d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That last URL is what you need to copy to your browser to find the same interface as on the hub. Amazing 🤩.&lt;/p&gt;
+
+&lt;p&gt;In my case, I had to add some more details (which I will explain below), so my command ended up looking like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 9000:9000 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8787:8787 &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; ~/Code/scale-aware-air-sea/:/home/jovyan/repo &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; ~/.aws:/home/jovyan/.aws &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; scale &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; quay.io/jbusecke/scale-aware-air-sea:68b654d76dce jupyter lab &lt;span class=&quot;nt&quot;&gt;--ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0.0.0 &lt;span class=&quot;nt&quot;&gt;--port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;9000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ok so lets break it down:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I chose to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;9000&lt;/code&gt; as the port on which the jupyter lab is running. You can replace this with any value you like but make sure that it is the same value in all 3 locations.&lt;/li&gt;
+  &lt;li&gt;I also added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p 8787:8787&lt;/code&gt; to be able to use the &lt;a href=&quot;https://docs.dask.org/en/latest/dashboard.html&quot;&gt;Dask Dashboard&lt;/a&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;8787&lt;/code&gt; is the default port, you could change this, but I did not bother here.&lt;/li&gt;
+  &lt;li&gt;In addition to mounting my code directory in the container, I also needed to add some secrets to access the &lt;a href=&quot;https://www.openstoragenetwork.org/&quot;&gt;OSN Cloud Storage&lt;/a&gt; (provided by &lt;a href=&quot;https://m2lines.github.io/&quot;&gt;m2lines&lt;/a&gt; 🙏). When I tried to mount the file itself I ended up with a permission error, but apparently on Mac this can be prevented by mounting the entire directory 🤷‍♂️. Mounting the secrets into the container avoids having to hardcode them into the container image (&lt;strong&gt;NOT SAFE&lt;/strong&gt;) or having to rewrite them manually each time (** HELLA ANNOYING**).&lt;/li&gt;
+  &lt;li&gt;I ended up having to recreate the same container a bunch of times to fiddle with the command, if you find yourself in that situation, do youself a favor and add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm scale; docker run ...&lt;/code&gt; to remove the container and rebuild it in one go.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;some-notes-on-docker-configuration-specific-to-apple-silicon&quot;&gt;Some Notes on Docker Configuration specific to Apple Silicon&lt;/h2&gt;
+
+&lt;p&gt;The pangeo docker images are not running natively on Apples chips, so they have to get emulated. Explaining this is honestly a bit beyond me at this point, but practically I found that chosing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Apple Virtualization Framework&lt;/code&gt; and enabling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Use Rosetta for x86_64/amd64 emulation on Apple Silicon&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Docker Desktop&amp;gt; Settings&amp;gt;General&amp;gt;Virtual Machine Options&lt;/code&gt; worked the fastest. I did not extensively test this, but that might be a fun thing for another time.&lt;/p&gt;
+
+&lt;p&gt;One last comment regarding Dask workers. Depending on your workflow you might want to replicate the memory to vCPU/thread ratio from another deployment to avoid running into memory issues (either by restricting the resources available in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Docker Desktop&amp;gt;Settings&amp;gt;Resources&lt;/code&gt; or by explicitly specifying the worker resources in dask, but this really depends on the specific code you are running.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+        <link>https://www.juliusbusecke.com/2025/05/01/pangeo-docker-local/</link>
+        <guid isPermaLink="true">https://www.juliusbusecke.com/2025/05/01/pangeo-docker-local/</guid>
+        
+        
+      </item>
     
       <item>
         <title>The road from academia - Part 1</title>
