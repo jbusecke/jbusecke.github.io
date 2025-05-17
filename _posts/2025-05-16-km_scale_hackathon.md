@@ -52,8 +52,8 @@ On a personal note, it was truly wonderful to be able to dive into messy complex
 
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTZjODh3cnV2c3U3bDJ6MHhraTBsMW05eml1MGpqYTYzYWJrd2wyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4ayE7jjRuUBQk/giphy.gif)
 
-## Thanks
 
+## Thanks
 Let me close with a massive thanks to the organizers (Tim Merlin, Lucas Harris, Robert Pincus, and Anna Valerio). This was a very well organized event and while there where technical challenges - would be boring if not! - it felt like everyone was able to make progress in the room and there were some really nice science results to show at the end. I highly recommend anyone who is interested in this data to look out for upcoming events in this program!
 
 Another round of special thanks to the xDGGS folks (Tina Odaka, Nick Hodgskin, Aart Stuurman, Justus Magin and Benoît Bovy), and Andrew Williams for wrangling the X-Shield data for the video. It was wonderful to meet so many new and familiar folks in Princeton. 
