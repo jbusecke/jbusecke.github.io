@@ -24,9 +24,14 @@ HEALPix has some very exciting prospects related to e.g.
 
 But the data is fundamentally served in a different shape than I am used to. Generally the data will have only a single spatial dimension that describes the unique cell identifier (in addition to e.g. a vertical level, time, etc). 
 
-![[/Users/juliusbusecke/Desktop/km-scale-hackathon/helpix_example.png]]
+<div class="text-center" style="padding-bottom: 50px">
+  <img src="/img/posts/km_scale_hackathon/healpix_example.png" class="img-fluid" style="max-width:100%">
+  <p class="text-muted">Note how the feedstock still reflects the old name. This has to stay that way!</p>
+</div>
 
-To deal with this specific data organization there are a bunch of different packages and a lot of helper function around the room (a great starting point is the [awesome-HEALPix repo](https://github.com/pangeo-data/awesome-HEALPix)), but I became very curious about the [xDGGS package](https://github.com/xarray-contrib/xdggs). This package is at its core an Xarray accessor that aims to abstract over not just HEALPix but other DGGS. To be honest one of the first things that hooked me was the fact that it enabled me to make an interactive [lonboard plot](https://www.linkedin.com/posts/julius-busecke-a47027117_lonboard-healpix-activity-7328089493410902017-1OHV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB0DhxcBeLLTv0jgiRXjfFQX459j8mZtltE) within a few minutes - quick data exploration will never *not* get me. But the more I learned about DGGS by reading the great [design document](https://github.com/xarray-contrib/xdggs/blob/main/design_doc.md) and talking to folks at the hackathon, the more I thought that implementing basic operations on the data (e.g. [spatial subsetting](https://github.com/xarray-contrib/xdggs/issues/16), [up/down scaling](https://github.com/xarray-contrib/xdggs/pull/141), convolution, calculus operators, ...) in a way that can be exposed to users in a generalized interface for multiple DGGS is the right way forward. I am very impressed with the progress that happened during the hackathon (see [here](https://github.com/xarray-contrib/xdggs/pull/141)). We bumped into some issues with the [xarray default behavior for dimension coordinates](https://github.com/xarray-contrib/xdggs/issues/143). Remember that ~200m resolution I mentioned above, thats 12 billion cells 😳, loading those into memory did most definitely unalive my laptop immediately, but I am confident that these can be solved in a general way with some clever custom indicies. I definitely got enough of an overview to decide to stay involved in the xdggs-sphere" (🙄 something, something pun intended) and I am excited to see that project evolve! I wish I could have contributed more during the hackathon but towards the middle of the week I got pulled into one of my personal favorites...making pretty videos...
+To deal with this specific data organization, there are a bunch of different packages and a lot of helper function around (a great starting point is the [awesome-HEALPix repo](https://github.com/pangeo-data/awesome-HEALPix)). But I became very curious about the [xDGGS package](https://github.com/xarray-contrib/xdggs). At its core, this package is an Xarray accessor that aims to abstract over not just HEALPix, but other DGGS as well. To be honest, one of the first things that hooked me was the fact that it enabled me to make an interactive [lonboard plot](https://www.linkedin.com/posts/julius-busecke-a47027117_lonboard-healpix-activity-7328089493410902017-1OHV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB0DhxcBeLLTv0jgiRXjfFQX459j8mZtltE) within a few minutes - quick data exploration will never *not* get me. But the more I learned about DGGS by reading the excellent [design document](https://github.com/xarray-contrib/xdggs/blob/main/design_doc.md) and talking to folks at the hackathon, the more I realized that implementing basic operations on the data (e.g. [spatial subsetting](https://github.com/xarray-contrib/xdggs/issues/16), [up/down scaling](https://github.com/xarray-contrib/xdggs/pull/141), convolution, calculus operators, ...) in a way that can be exposed to users in a generalized interface for multiple DGGS is the right way forward. 
+I am very impressed with the progress that happened during the hackathon (see [here](https://github.com/xarray-contrib/xdggs/pull/141)). We bumped into some issues with the [xarray default behavior for dimension coordinates](https://github.com/xarray-contrib/xdggs/issues/143) - remember that ~200m resolution I mentioned above, thats 12 billion cells 😳, loading those into memory did most definitely unalive my laptop immediately. But I am confident that these can be solved in a general way with some clever custom indicies. 
+I definitely got enough of an overview to decide to stay involved in the xdggs-sphere" (🙄 something, something pun intended) and I am excited to see that project evolve! I wish I could have contributed more during the hackathon but towards the middle of the week I got pulled away into one of my personal favorites...making pretty videos...
 
 ## It would be a crime not to visualize the living hell out of this data!
 
@@ -42,7 +47,7 @@ Talking about fast, when I saw the stunning plot [Tristan Abbott](https://thabbo
 >[NOTE]
 >On a side note: As someone who always struggles to remember the api of matplotlibs colorbars, ticks, etc, I found that vibe-coding the changes I wanted with chatGPT was an unbelievable game changer. And I think the final video is nothing short of hypnotizing! 
 
-#### Science and coding is fun again 
+## Science and coding is fun again 
 
 On a personal note, it was truly wonderful to be able to dive into messy complex issues again without the immediate anxiety that I felt right [after resigning from Columbia](). I was able to give 110% over a week and enjoyed every minute of it. I am tired as hell but I am happy. I will take a long weekend, because I have learned a lesson or two about burnout lately, but this event gave me the confidence to say that I am ready - and extremely excited - to go back to work. 
 
@@ -52,6 +57,11 @@ On a personal note, it was truly wonderful to be able to dive into messy complex
 
 Let me close with a massive thanks to the organizers (Tim Merlin [], Lucas [] ,Robert Pincus, and Anna Valerio). This was a very well organized event and while there where technical challenges - would be boring if not! - it felt like everyone was able to make progress in the room and there were some really nice science results to show at the end. I highly recommend anyone who is interested in this data to look out for upcoming events in this program!
 
-Another round of special thanks to the xDGGS folks (Tina Odaka, Nick Hodgskin, Aart Stuurman, Justus Magin and Benoît Bovy), and Andrew Williams for wrangling the X-Shield data for the video. It was wonderful to meet so many new people in Princeton. Thanks everyone!
+Another round of special thanks to the xDGGS folks (Tina Odaka, Nick Hodgskin, Aart Stuurman, Justus Magin and Benoît Bovy), and Andrew Williams for wrangling the X-Shield data for the video. It was wonderful to meet so many new people in Princeton. 
 
-Group Photo
+<div class="text-center" style="padding-bottom: 50px">
+  <img src="/img/posts/km_scale_hackathon/healpix_example.png" class="img-fluid" style="max-width:100%">
+  <p class="text-muted">Note how the feedstock still reflects the old name. This has to stay that way!</p>
+</div>
+
+Thanks everyone!
