@@ -5,9 +5,84 @@
     <description>Julius Busecke is an Associate Research Scientist, studying Oceanography with a focus on oceanic eddy mixing and biogechemistry.</description>
     <link>https://www.juliusbusecke.com/</link>
     <atom:link href="https://www.juliusbusecke.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 01 May 2025 16:11:41 +0000</pubDate>
-    <lastBuildDate>Thu, 01 May 2025 16:11:41 +0000</lastBuildDate>
+    <pubDate>Sat, 17 May 2025 23:36:53 +0000</pubDate>
+    <lastBuildDate>Sat, 17 May 2025 23:36:53 +0000</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>km-Scale Hackathon 2025</title>
+        <description>&lt;p&gt;We just wrapped up the &lt;a href=&quot;https://digital-earths-global-hackathon.github.io/hk25/&quot;&gt;km-Scale Hackathon&lt;/a&gt;. I participated in the hackathon from the Princeton node, hosted at NOAA’s GFDL but the hacking was going on around the clock with teams distributed all around the world. The theme of the event was extremely highly resolved atmospheric simulations (below 1 km, some as high as 200m 🤯 ).&lt;/p&gt;
+
+&lt;p&gt;Most participants organized as part of teams focused on specific topics like clouds, hurricanes, extreme events, and many more. But naturally these simulations, and their enormous size, also posed unique technical challenges! So of course this immediately peaked my interest when I first heard about the event. Despite the ‘usual suspects’ of how to find, share, and process large datasets there was a focus on a specific grid type that was entirely new to me: &lt;strong&gt;HEALPix (Hierarchical Equal-Area and Isolatitude Pixelization)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HEALPix is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Discrete_global_grid&quot;&gt;discrete global grid system&lt;/a&gt; (DGGS) that has some really interesting properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;It is &lt;em&gt;hierarchical&lt;/em&gt;. The grid is uniquely defined by the level or zoom, and each cell of the grid can be recursively divided into a set of smaller cells (4 in th case of HEALPix), increasing the level (check out this &lt;a href=&quot;https://h3geo.org/&quot;&gt;visualization&lt;/a&gt; of the principle with H3, another hierarchical DGG).&lt;/li&gt;
+  &lt;li&gt;It is &lt;em&gt;equal area&lt;/em&gt;. Each grid cell covers the same area on a sphere, avoiding singularities near the pole and making averages (global or regional) trivial.&lt;/li&gt;
+  &lt;li&gt;HEALPix also has the property that all longitude position of cell centers are aranged on constant latitude lines, which is advantageous for computing spherical harmonics, and also making longitudinal averages very simple to compute. 
+you can read more about HEALpix &lt;a href=&quot;https://healpix.sourceforge.io/html/intro_Introduction_HEALPix.htm&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://ui.adsabs.harvard.edu/abs/2005ApJ...622..759G/abstract&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HEALPix has some very exciting prospects related to e.g.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;dynamic refinement of interactive maps&lt;/li&gt;
+  &lt;li&gt;being able to seamlessly prototype analysis on a lower zoom level and transition to high resolution for production&lt;/li&gt;
+  &lt;li&gt;eliminating complex weighted operations (and the errors associated with them)&lt;/li&gt;
+  &lt;li&gt;easy colocation of observational and simulation data (even though at the moment a lot of data has to be regridded to HEALPix first)&lt;/li&gt;
+  &lt;li&gt;and it seems that the above properties are also very helpful for ML/AI applications(see e.g. &lt;a href=&quot;https://nvlabs.github.io/cbottle/&quot;&gt;cBottle&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But the data is fundamentally served in a different shape than I am used to. Generally the data will have only a single spatial dimension that describes the unique cell identifier (in addition to e.g. a vertical level, time, etc).&lt;/p&gt;
+
+&lt;div class=&quot;text-center&quot; style=&quot;padding-bottom: 50px&quot;&gt;
+  &lt;img src=&quot;/img/posts/km_scale_hackathon/healpix_example.png&quot; class=&quot;img-fluid&quot; style=&quot;max-width:100%&quot; /&gt;
+  &lt;p class=&quot;text-muted&quot;&gt;A low zoom level HEALPix dataset&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To deal with this specific data organization, there are a bunch of different packages and a lot of helper function around (a great starting point is the &lt;a href=&quot;https://github.com/pangeo-data/awesome-HEALPix&quot;&gt;awesome-HEALPix repo&lt;/a&gt;). But I became very curious about the &lt;a href=&quot;https://github.com/xarray-contrib/xdggs&quot;&gt;xDGGS package&lt;/a&gt;. At its core, this package is an Xarray accessor that aims to abstract over not just HEALPix, but other DGGS as well. To be honest, one of the first things that hooked me was the fact that it enabled me to make an interactive &lt;a href=&quot;https://www.linkedin.com/posts/julius-busecke_lonboard-healpix-activity-7328089493410902017-Ferz?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAAB0DhxcBeLLTv0jgiRXjfFQX459j8mZtltE&quot;&gt;lonboard plot&lt;/a&gt; within a few minutes - quick data exploration will never &lt;em&gt;not&lt;/em&gt; get me. But the more I learned about DGGS by reading the excellent &lt;a href=&quot;https://github.com/xarray-contrib/xdggs/blob/main/design_doc.md&quot;&gt;design document&lt;/a&gt; and talking to folks at the hackathon, the more I realized that implementing basic operations on the data (e.g. &lt;a href=&quot;https://github.com/xarray-contrib/xdggs/issues/16&quot;&gt;spatial subsetting&lt;/a&gt;, &lt;a href=&quot;https://github.com/xarray-contrib/xdggs/pull/141&quot;&gt;up/down scaling&lt;/a&gt;, convolution, calculus operators, …) in a way that can be exposed to users in a generalized interface for multiple DGGS is the right way forward. 
+I am very impressed with the &lt;a href=&quot;https://github.com/xarray-contrib/xdggs/pull/141&quot;&gt;progress&lt;/a&gt; during the hackathon. We bumped into some issues with the &lt;a href=&quot;https://github.com/xarray-contrib/xdggs/issues/143&quot;&gt;xarray default behavior for dimension coordinates&lt;/a&gt; - remember that ~200m resolution I mentioned above, thats 12 billion cells 😳, loading those into memory did most definitely unalive my laptop immediately. But I am confident that these can be solved in a general way with some clever custom indicies. 
+I definitely got enough of an overview to decide to stay involved in the xdggs-sphere” (🙄 something, something pun intended) and I am excited to see that project evolve! I wish I could have contributed more during the hackathon but towards the middle of the week I got pulled away into one of my personal favorites…making pretty videos…&lt;/p&gt;
+
+&lt;h2 id=&quot;it-would-be-a-crime-not-to-visualize-the-living-hell-out-of-this-data&quot;&gt;It would be a crime not to visualize the living hell out of this data!&lt;/h2&gt;
+
+&lt;p&gt;I mean LOOK AT IT!&lt;/p&gt;
+
+&lt;iframe width=&quot;800&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/fd0Pb9aBcjM?si=7KGOyyzUqeKRaZXX&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;strong&gt;I soooo want to see this on an 8k monitor…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;But on a more serious note, I was not surprised, but still enjoyed all of the expert scientists discovering a bunch of interesting features in this video, and getting their head spinning with new ideas. Visualization is an essential part of creative and fast science!&lt;/p&gt;
+
+&lt;p&gt;Talking about fast, when I saw the stunning plot &lt;a href=&quot;https://thabbott.github.io/&quot;&gt;Tristan Abbott&lt;/a&gt; made for his paper, and then heard that we might have access to this super high time resolution data I could not stop myself from prototyping a movie until the very late night. I quickly realized that rendering out frames in serial with matplotlib’s FuncAnimate was not going to do the trick and I decided to finally follow Deepak Cherians advice to use &lt;a href=&quot;https://github.com/ahuang11/streamjoy&quot;&gt;streamjoy&lt;/a&gt; (the better alternative to my most unfortunately named python package to date). Once I figured out a little hack to have access to datasets with multiple variables &lt;a href=&quot;https://github.com/ahuang11/streamjoy/issues/40#issuecomment-2887101757&quot;&gt;more info&lt;/a&gt; , and was equipped with a nicely parallelized plotting, I was able to produce the first version of this together with Andrew Williams before lunch the next day (all that was needed was an unholy amount of fist bumps)!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As someone who always struggles to remember the api of matplotlibs colorbars, ticks, etc, I found that vibe-coding the changes I wanted with chatGPT was an unbelievable game changer. And I think the final video is nothing short of hypnotizing!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;science-and-coding-is-fun-again&quot;&gt;Science and coding is fun again&lt;/h2&gt;
+
+&lt;p&gt;On a personal note, it was truly wonderful to be able to dive into messy complex issues again without the immediate anxiety that I felt right &lt;a href=&quot;https://jbusecke.github.io/2025/02/15/burnout/&quot;&gt;after resigning from Columbia&lt;/a&gt;. I was able to give 110% over a week, I could both progress on my own interests and help others out, and enjoyed every minute of it. I am tired as hell now, but I am also very happy. I will take a long weekend, because I have learned a lesson or two about burnout lately, but this event gave me the confidence to say that I am ready - and extremely excited - to go back to work.&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;img src=&quot;https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTZjODh3cnV2c3U3bDJ6MHhraTBsMW05eml1MGpqYTYzYWJrd2wyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4ayE7jjRuUBQk/giphy.gif&quot; alt=&quot;Centered GIF&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;thanks&quot;&gt;Thanks&lt;/h2&gt;
+&lt;p&gt;Let me close with a massive thanks to the organizers (Tim Merlin, Lucas Harris, Robert Pincus, and Anna Valerio). This was a very well organized event and while there where technical challenges - would be boring if not! - it felt like everyone was able to make progress in the room and there were some really nice science results to show at the end. I highly recommend anyone who is interested in this data to look out for upcoming events in this program!&lt;/p&gt;
+
+&lt;p&gt;Another round of special thanks to the xDGGS folks (Tina Odaka, Nick Hodgskin, Aart Stuurman, Justus Magin and Benoît Bovy), and Andrew Williams for wrangling the X-Shield data for the video. It was wonderful to meet so many new and familiar folks in Princeton.&lt;/p&gt;
+
+&lt;div class=&quot;text-center&quot; style=&quot;padding-bottom: 50px&quot;&gt;
+  &lt;img src=&quot;/img/posts/km_scale_hackathon/group_pic.jpg&quot; class=&quot;img-fluid&quot; style=&quot;max-width:100%&quot; /&gt;
+  &lt;p class=&quot;text-muted&quot;&gt;Thanks everyone!&lt;/p&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+        <link>https://www.juliusbusecke.com/2025/05/16/km_scale_hackathon/</link>
+        <guid isPermaLink="true">https://www.juliusbusecke.com/2025/05/16/km_scale_hackathon/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Reproducing Science Locally</title>
