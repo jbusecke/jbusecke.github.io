@@ -50,8 +50,9 @@ Talking about fast, when I saw the stunning plot [Tristan Abbott](https://thabbo
 
 On a personal note, it was truly wonderful to be able to dive into messy complex issues again without the immediate anxiety that I felt right [after resigning from Columbia](https://jbusecke.github.io/2025/02/15/burnout/). I was able to give 110% over a week, I could both progress on my own interests and help others out, and enjoyed every minute of it. I am tired as hell now, but I am also very happy. I will take a long weekend, because I have learned a lesson or two about burnout lately, but this event gave me the confidence to say that I am ready - and extremely excited - to go back to work. 
 
-![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTZjODh3cnV2c3U3bDJ6MHhraTBsMW05eml1MGpqYTYzYWJrd2wyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4ayE7jjRuUBQk/giphy.gif)
-
+<div align="center">
+  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTZjODh3cnV2c3U3bDJ6MHhraTBsMW05eml1MGpqYTYzYWJrd2wyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4ayE7jjRuUBQk/giphy.gif" alt="Centered GIF">
+</div>
 
 ## Thanks
 Let me close with a massive thanks to the organizers (Tim Merlin, Lucas Harris, Robert Pincus, and Anna Valerio). This was a very well organized event and while there where technical challenges - would be boring if not! - it felt like everyone was able to make progress in the room and there were some really nice science results to show at the end. I highly recommend anyone who is interested in this data to look out for upcoming events in this program!
