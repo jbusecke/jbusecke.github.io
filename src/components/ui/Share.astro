@@ -3,18 +3,26 @@ import { Icon } from "astro-icon/components";
 
 const { tweetText, currentUrl } = Astro.props;
 
+// Use the URL API to ensure no double slashes after the domain
+let sanitizedUrl;
+try {
+  const urlObj = new URL(currentUrl);
+  // Remove duplicate slashes in pathname
+  urlObj.pathname = urlObj.pathname.replace(/\/{2,}/g, '/');
+  sanitizedUrl = urlObj.origin + urlObj.pathname + urlObj.search + urlObj.hash;
+} catch (e) {
+  sanitizedUrl = currentUrl; // fallback
+}
+
 const shareLinks = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
-  },
-  {
-    name: "Bluesky",
-    icon: "bluesky",
-    href: `https://bsky.app/compose/post?text=${encodeURIComponent(currentUrl)}`,
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(sanitizedUrl)}`,
   },
 ];
+
+
 ---
 
 <div class="flex items-center gap-5 text-lg" role="group" aria-label="Share on social media">
@@ -36,5 +44,4 @@ const shareLinks = [
     </a>
   ))
 }
-
 </div>
