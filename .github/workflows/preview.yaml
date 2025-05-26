@@ -14,6 +14,8 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Set message value
         run: |
           echo "comment_message=This pull request is being automatically built with [GitHub Actions](https://github.com/features/actions) and [Netlify](https://www.netlify.com/). To see the status of your deployment, click below." >> $GITHUB_ENV
@@ -79,19 +81,19 @@ jobs:
           github.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
-        uses: dawidd6/action-download-artifact@v6
+        uses: actions/download-artifact@v4
+        # uses: dawidd6/action-download-artifact@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflow: deploy.yaml
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # workflow: deploy.yaml
           run_id: ${{ github.rest.event.workflow_run.id }}
-          name: site-zip
+          name: github-pages
       - name: Unzip site
         if:  |
           github.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
         run: |
-          rm -rf _build/html
           unzip site.zip
           rm -f site.zip
       # Push the site's HTML to Netlify and get the preview URL
