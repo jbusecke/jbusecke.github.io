@@ -76,6 +76,10 @@ jobs:
           body: |
             ${{ env.comment_message }}
             🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
+      - name: Debug
+        run: |
+          echo "Triggering workflow id :${{ github.rest.event.workflow_run.id }}"
+          echo "Triggering workflow all id :${{github.rest.event.workflow_run}}"
       - name: Download Artifact site
         if: |
           github.event.workflow_run.conclusion == 'success'
