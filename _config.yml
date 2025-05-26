@@ -20,10 +20,8 @@ collections:
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 # stack-overflow bitbucket
 social:
-  - title: twitter
-    url: http://twitter.com/JuliusBusecke
-  # - title: linkedin
-  #   url: https://www.linkedin.com/in/julius-busecke-a47027117/
+  - title: linkedin
+    url: https://www.linkedin.com/in/julius-busecke-a47027117/
   - title: github
     url: http://github.com/jbusecke
 
