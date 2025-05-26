@@ -94,6 +94,8 @@ jobs:
           && steps.fc.outputs.comment-id != ''
         uses: actions/download-artifact@v4
         with:
+          name: github-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: Unzip site
         if:  |
