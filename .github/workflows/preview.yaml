@@ -94,12 +94,13 @@ jobs:
           && steps.fc.outputs.comment-id != ''
         uses: actions/download-artifact@v4
         with:
+          path: "./download"
           name: github-pages
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: Files in current directory
         run: |
-          ls -la .
+          ls -la dist
       - name: Unzip site
         if:  |
           github.event.workflow_run.conclusion == 'success'
