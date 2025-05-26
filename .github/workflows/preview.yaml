@@ -84,7 +84,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           run-id: ${{ github.rest.event.workflow_run.id }}
-          name: github-pages
       - name: Unzip site
         if:  |
           github.event.workflow_run.conclusion == 'success'
