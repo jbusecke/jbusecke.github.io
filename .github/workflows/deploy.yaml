@@ -33,4 +33,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./download
+          publish_dir: "./dist"
