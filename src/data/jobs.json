@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Affiliate Graduate Faculty",
+    "company": "University of Hawaii",
+    "url": null,
+    "start": "2022-01-14",
+    "end": null,
+    "mentoring":["dianne-deauna"],
+    "full_time": false
+  },
+  {
+    "title": "Lead of Open Research",
+    "company": "m2lines at NYU",
+    "url": null,
+    "start": "2023-05-01",
+    "end": "2025-03-14",
+    "supervisor": ["laure-zanna"],
+    "full_time": true
+  },
+  {
+    "title": "Manager of Data and Computing",
+    "company": "NSF LEAP-STC at Columbia University",
+    "url": null,
+    "start": "2022-10-01",
+    "end": "2025-03-14",
+    "supervisor": ["ryan-abernathey", "pierre-gentine"],
+    "full_time": true
+  },
+  {
+    "title": "Senior Staff Associate",
+    "company": "Columbia University, Lamont-Doherty Earth Observatory",
+    "url": null,
+    "start": "2022-12-01",
+    "end": "2025-03-14",
+    "supervisor": ["ryan-abernathey", "pierre-gentine"],
+    "full_time": true
+  },
+  {
+    "title": "Associate Research Scientist",
+    "company": "Columbia University, Lamont-Doherty Earth Observatory",
+    "url": null,
+    "start": "2020-09-01",
+    "end": "2022-11-30",
+    "supervisor": "ryan-abernathey",
+    "full_time": true
+  },
+  {
+    "title": "Postdoctoral Research Associate",
+    "company": "Princeton University, Department of Geosciences",
+    "url": null,
+    "start": "2017-09-15",
+    "end": "2020-08-31",
+    "supervisor": "laure-resplandy",
+    "full_time": true
+  },
+  {
+    "title": "Graduate Research Associate",
+    "company": "Columbia University, Dept. of Earth & Environmental Sciences",
+    "url": null,
+    "start": "2010-01",
+    "end": "2017-05",
+    "supervisor": "arnold-gordon",
+    "full_time": true
+  },
+  {
+    "title": "Research Assistant",
+    "company": "GEOMAR, Department of Theory and Modeling",
+    "url": null,
+    "start": "2009-01",
+    "end": "2010-05",
+    "supervisor": "arne-biastoch",
+    "full_time": false
+  }
+]

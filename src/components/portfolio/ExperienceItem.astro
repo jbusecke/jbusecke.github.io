@@ -1,0 +1,34 @@
+---
+const { title, company, description, link, date, current } = Astro.props;
+const dotColorClass = current
+  ? "text-mint-400 drop-shadow-[0px_0px_8px_rgba(0,_255,_94,_1)]"
+  : "text-gray-400 drop-shadow-none";
+---
+
+<div
+  class="relative max-w-screen-xl mx-auto px-6 pb-6 md:pb-12 grid md:grid-cols-6 md:gap-8"
+>
+  <div class="pb-4 md:pb-12 md:col-span-3">
+    <div class="sticky top-0 flex items-center space-x-3 relative">
+      <span
+        class={`absolute -left-[27px] text-5xl rounded-full ${dotColorClass}`}
+        >&bull;</span
+      >
+      <h3 class="text-xl font-bold text-mint-400">
+        {title}
+      </h3>
+    </div>
+    <h4 class="text-xl font-semibold text-zinc-600 dark:text-white mt-1">
+      {link
+        ? <a href={link} target="_blank" rel="noopener noreferrer" class="underline hover:text-mint-600">{company}</a>
+        : company
+      }
+    </h4>
+  </div>
+
+  <div class="flex flex-col gap-2 pb-4 text-zinc-800 dark:text-zinc-300 md:col-span-3">
+    <time datetime={date} class="text-sm text-zinc-600/80 dark:text-white/80">{date}</time>
+    <p>{description}</p>
+  </div>
+</div>
+

@@ -1,0 +1,39 @@
+---
+import Project from "./Project.astro";
+import ViewMore from "../ui/ViewMore.astro";
+const allPosts = await Astro.glob("../../pages/portfolio/projects/*.md");
+// Sort by descending date (most recent first)
+allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).getTime() -
+    new Date(a.frontmatter.pubDate).getTime(),
+);
+---
+
+<section class="relative pt-8 pb-32 max-2xl:px-8 max-md:pt-4">
+  <div class="mx-auto max-w-7xl py-8">
+    <slot />
+  </div>
+
+  <div
+    id="containerProjects"
+    class="mx-auto max-w-7xl grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-5 p-2 py-4 max-h-[150vh] overflow-hidden transition-[max-height] duration-500 ease-in-out"
+  >
+    {
+      allPosts.map((post) => (
+        <Project
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          date={post.frontmatter.pubDate}
+          languages={post.frontmatter.languages}
+          image={post.frontmatter.image}
+        />
+      ))
+    }
+  </div>
+
+  <ViewMore label="View More Projects...", button_id="moreProjects" container_id="containerProjects" />
+</section>
+
+

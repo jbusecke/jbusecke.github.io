@@ -1,0 +1,30 @@
+---
+const { label, button_id, container_id } = Astro.props;
+---
+
+<!-- Button wrapper -->
+<div
+  id={button_id}
+  class="absolute bottom-0 left-0 w-full flex justify-center text-center bg-gradient-to-t from-[#FBFEFD] dark:from-transparent from-55% to-transparent to-100% pb-30 pt-52"
+>
+  <button
+    class="absolute font-bold cursor-pointer text-mint-400 dark:text-mint-100 hover:text-mint-500 dark:hover:text-mint-300 transition-all"
+  >
+    {label}
+  </button>
+</div>
+
+<!-- Inline script with injected values -->
+<script is:raw>
+  document.querySelector("#{button_id}")?.addEventListener("click", () => {
+    const container = document.querySelector("#{container_id}");
+    const button = document.querySelector("#{button_id}");
+
+    if (container && button) {
+      container.style.maxHeight = "15000px";
+      setTimeout(() => {
+        button.classList.add("hidden");
+      }, 5000);
+    }
+  });
+</script>

@@ -1,0 +1,140 @@
+[
+  {
+    "id": "osm2024",
+    "name": "Ocean Sciences Meeting 2024",
+    "location": "New Orleans, LA",
+    "date": "2024-02-01"
+  },
+  {
+    "id": "ams2023",
+    "name": "AMS Meeting 2023",
+    "location": "Virtual",
+    "date": "2023-01-01"
+  },
+  {
+    "id": "scipy2022",
+    "name": "Scipy 2022",
+    "location": "Austin, TX",
+    "date": "2022-07-01"
+  },
+  {
+    "id": "lanlcosim2022",
+    "name": "LANL COSIM Climate and Ocean Group Webinar",
+    "location": "Virtual",
+    "date": "2022-01-01"
+  },
+  {
+    "id": "uclaidre2022",
+    "name": "UCLA IDRE Open Science Symposium",
+    "location": "Virtual",
+    "date": "2022-01-01"
+  },
+  {
+    "id": "osm2022",
+    "name": "Ocean Sciences Meeting 2022",
+    "location": "Virtual",
+    "date": "2022-02-01"
+  },
+  {
+    "id": "ams2022",
+    "name": "AMS Annual Meeting 2022",
+    "location": "Virtual",
+    "date": "2022-01-01"
+  },
+  {
+    "id": "ocb2021",
+    "name": "OCB Science Meeting 2021",
+    "location": "Virtual",
+    "date": "2021-01-01"
+  },
+  {
+    "id": "dask2021",
+    "name": "Dask Distributed Summit 2021",
+    "location": "Virtual",
+    "date": "2021-01-01"
+  },
+  {
+    "id": "mlse2020",
+    "name": "MLSE Conference Columbia 2020",
+    "location": "Virtual",
+    "date": "2020-01-01"
+  },
+  {
+    "id": "earthcube2020",
+    "name": "EarthCube Annual Meeting 2020",
+    "location": "Virtual",
+    "date": "2020-01-01"
+  },
+  {
+    "id": "geo2020",
+    "name": "GEO/AOS/PEI Climate Seminar 2020",
+    "location": "Princeton, NJ",
+    "date": "2020-01-01"
+  },
+  {
+    "id": "osm2020",
+    "name": "Ocean Sciences Meeting 2020",
+    "location": "San Diego, CA",
+    "date": "2020-02-01"
+  },
+  {
+    "id": "gfdl2019",
+    "name": "GFDL Lab Review 2019",
+    "location": "Princeton, NJ",
+    "date": "2019-01-01"
+  },
+  {
+    "id": "ocb2019",
+    "name": "OCB Summer Workshop 2019",
+    "location": "Woods Hole, MA",
+    "date": "2019-01-01"
+  },
+  {
+    "id": "whoi2019",
+    "name": "WHOI PO Seminar 2019",
+    "location": "Woods Hole",
+    "date": "2019-01-01"
+  },
+  {
+    "id": "agu2018",
+    "name": "AGU Fall Meeting 2018",
+    "location": "Washington DC",
+    "date": "2018-12-01"
+  },
+  {
+    "id": "ocb2018",
+    "name": "OCB Summer Workshop 2018",
+    "location": "Woods Hole",
+    "date": "2018-07-01"
+  },
+  {
+    "id": "odc2018",
+    "name": "Ocean Deoxygenation Conference 2018",
+    "location": "Kiel, Germany",
+    "date": "2018-09-01"
+  },
+  {
+    "id": "osm2018",
+    "name": "Ocean Sciences Meeting 2018",
+    "location": "Portland, OR",
+    "date": "2018-02-01"
+  },
+  {
+    "id": "agu2016",
+    "name": "AGU Fall Meeting 2016",
+    "location": "San Francisco",
+    "date": "2016-12-01"
+  },
+  {
+    "id": "clivar2016",
+    "name": "CLIVAR Open Science Conference 2016",
+    "location": "Qingdao, China",
+    "date": "2016-09-01"
+  },
+  {
+    "id": "osm2014",
+    "name": "Ocean Sciences Meeting 2014",
+    "location": "Honolulu",
+    "date": "2014-02-01"
+  }
+]

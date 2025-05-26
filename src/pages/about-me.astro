@@ -1,0 +1,241 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import Heading from "../components/ui/Heading.astro";
+import Experience from "../components/portfolio/Experience.astro";
+import Education from "../components/portfolio/Education.astro";
+import Publications from "../components/portfolio/Publications.astro";
+import Contact from "../components/portfolio/Contact.astro";
+import Tools from "../components/portfolio/Tools.astro";
+import { ABOUT_ME, CONTACT, PAGE } from "../constants";
+
+import ListEventsPresentations from "../components/portfolio/ListEventsPresentations.astro";
+
+import events from "../data/events.json";
+import presentations from "../data/presentations.json";
+import RevealMore from "../components/ui/RevealMore.astro";
+import { languages } from "../utils/languages";
+
+const allTools = Object.keys(languages);
+// Group languages by category
+
+type GroupedToolsWithKeys = Record<
+  string, // category
+  Record<
+    string, // tool key (e.g., "git", "astro")
+    (typeof languages)[string] // tool object
+  >
+>;
+
+const groupedTools: GroupedToolsWithKeys = Object.entries(languages).reduce(
+  (acc, [key, lang]) => {
+    const category = lang.category ?? "Uncategorized";
+    if (!acc[category]) acc[category] = {};
+    acc[category][key] = lang;
+    return acc;
+  },
+  {} as GroupedToolsWithKeys,
+);
+
+const profileImage = ABOUT_ME.profile_image;
+const profileAlt = ABOUT_ME.profile_image_alt;
+const descriptionShort = ABOUT_ME.description_short;
+const profileTitle = ABOUT_ME.profile_title;
+const profileName = CONTACT.name;
+const email = CONTACT.email;
+const yearsExperience = ABOUT_ME.years_experience;
+
+const now = new Date();
+const past_events = events
+  .filter((e) => new Date(e.date) <= now)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const { frontmatter } = Astro.props;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((header) => {
+      header.classList.add("scroll-m-28");
+    });
+  });
+</script>
+
+<Layout
+  pageTitle={PAGE.title}
+  description={PAGE.description}
+  ogimage={PAGE.ogimage}
+>
+  <section class="w-full mt-5 py-4 flex flex-row justify-center gap-6">
+
+  <article class="w-full max-w-5xl px-8 md:px-14 py-8 bg-white dark:bg-transparent border border-neutral-100 dark:border-0 rounded-2xl">
+      <div class="w-full h-auto mb-4 mx-auto" id="#">
+        <div
+          class="transition-all justify-center w-full gap-8 max-md:gap-3 max-lg:gap-2 flex flex-col items-center z-0 relative dark:from-mint-950 dark:to-zinc-950"
+        >
+          <div class="aspect-square h-60 max-md:size-32">
+            <div
+              class="group-hover:scale-105 relative z-10 flex w-full cursor-pointer items-center overflow-hidden rounded-full dark:p-[1.5px] p-[2px] transition-all duration-500"
+            >
+              <div
+                class="absolute inset-0 h-full w-full rounded-fullfrom-transparent to-riptide-500 dark:from-transparent f dark:to-mint-300 animate-rotate-border bg-conic/[from_var(--border-angle)]"
+              >
+              </div>
+              <div class="relative z-20 flex w-full rounded-full bg-mint-900">
+                <div
+                  class="w-full aspect-square rounded-full bg-center bg-cover"
+                  style={`background-image: url(${profileImage})`}
+                  aria-label={ABOUT_ME.profile_image_blog_alt}
+                >
+                  <a
+                    href="/about-me"
+                    class="flex h-full w-full"
+                    aria-label="View about me page"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-col justify-center gap-4 max-md:gap-2">
+            <div class="text-center">
+              <Heading textGradient={profileName} />
+            </div>
+          </div>
+        </div>
+      </div>
+<div class="flex gap-4 items-center justify-center">
+        <Heading text="About me" />
+      </div>
+
+      <div class="markdown text-blacktext dark:text-gray-200" id="content">
+        <p>
+          I’m a climate scientist and open-source software engineer based in Brooklyn, NY, with over 15 years of experience in interdisciplinary climate research and over a decade of leadership in scientific software development. 
+        </p>
+        <p>
+          My scientific work spans ocean circulation, climate variability, and climate change, while my technical work centers on developing scalable, cloud-native data infrastructure to empower science and machine learning teams.
+        </p>
+        <p>
+I specialize in connecting diverse data sources—from in-situ sensors to global Earth system models—and developing tools and workflows that make these data more accessible, usable, and reproducible. Rather than maintaining a single tool, I focus on improving ecosystems: integrating open-source projects, identifying critical gaps, and translating between scientists and engineers to accelerate progress on complex challenges like climate change.
+        </p>
+        <p>
+As a longtime contributor to the Pangeo community, I’m committed to open science and inclusive collaboration. I have lead and advised interdisciplinary teams, and regularly speak and teach about data science, visualization, and climate analytics using Python.
+</p>
+        <p>
+If you're interested in collaborating, exploring a shared project, or just talking science and infrastructure—feel free to reach out!
+          </p>
+      </div>
+  </section>
+
+  <!-- Events -->
+  <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16" id="events">
+    <div class="flex flex-col pt-8 max-w-4xl mx-auto">
+      <div class="flex gap-4 items-center justify-center">
+        <Heading text="Past Events and Presentations" level={2} />
+      </div>
+      <RevealMore
+        label="Show More Events"
+        containerId="container-events"
+        buttonId="reveal-btn-events"
+      >
+        <ListEventsPresentations
+          events={past_events}
+          presentations={presentations}
+        />
+      </RevealMore>
+    </div>
+  </section>
+
+  <!-- Tools section -->
+
+  <section class="py-8 px-8 max-md:py-4 mt-10 mb-20 scroll-m-16" id="skills">
+    <div class="flex flex-col gap-8 max-w-5xl justify-center mx-auto">
+      <div class="flex gap-4 items-center justify-center">
+        <Icon class="text-3xl text-white" name="dashboard" />
+        <!-- <Heading text="Tech" textGradient="Skills" level={2} /> -->
+        <Heading text="Skills" level={2} />
+      </div>
+      <div
+        class="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        {
+          Object.entries(groupedTools).map(([category, tools]) => (
+            <article
+              key={category}
+              class="group relative z-0 flex flex-col overflow-hidden rounded-2xl bg-gradient-to-tr from-riptide-100 to-white p-6 transition hover:shadow-[0_10px_50px_rgba(13,_188,_130,_0.2)] dark:bg-gradient-to-r dark:from-mint-900 dark:to-mint-950 dark:overflow-hidden dark:before:[background-image:radial-gradient(circle,_rgba(13,188,130)_0,_rgba(1,45,34)_100%)] before:[background-image:radial-gradient(circle,_rgba(95,255,202)_0,_rgba(144,253,210)_100%)] before:absolute before:left-30 before:-bottom-0 before:h-[80%] before:aspect-square before:rounded-full before:blur-3xl dark:before:opacity-80 before:opacity-30 before:-z-10 before:transition"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                {/* <Icon class="text-2xl text-mint-500 dark:text-white" name="movie" aria-hidden="true" /> */}
+                <h3 class="text-xl font-bold text-blacktext dark:text-white">
+                  {category}
+                </h3>
+              </div>
+              <div class="overflow-y-auto">
+                <Tools
+                  tools={Object.keys(tools)}
+                  variant="center"
+                  linkEnabled={true}
+                  size="sm"
+                />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16" id="experience">
+    <div class="flex flex-col pt-8 max-w-4xl mx-auto">
+      <div class="flex gap-4 items-center justify-center">
+        <!-- <Icon class="text-3xl text-white" name="briefcase" /> -->
+        <!-- TODO: Icon does not adjust to dark/light theme -->
+        <Heading text="Experience" level={2} />
+      </div>
+      <RevealMore
+        label="Show More"
+        containerId="container-experience"
+        buttonId="reveal-btn-experience"
+        maxHeightMobile="23rem"
+        maxHeightTablet="30rem"
+        maxHeightDesktop="31rem"
+      >
+        <Experience />
+      </RevealMore>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16" id="publications">
+    <div class="flex flex-col pt-8 max-w-4xl mx-auto">
+      <div class="flex gap-4 items-center justify-center">
+        <!-- <Icon class="text-3xl text-white" name="briefcase" /> -->
+        <!-- TODO: Icon does not adjust to dark/light theme -->
+        <Heading text="Publications" level={2} />
+      </div>
+      <RevealMore
+        label="Show More"
+        containerId="container-publications"
+        buttonId="reveal-btn-publications"
+        maxHeightMobile="28rem"
+        maxHeightTablet="29rem"
+        maxHeightDesktop="31rem"
+      >
+        <Publications />
+      </RevealMore>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16 " id="education">
+    <div class="flex flex-col pt-8 max-w-4xl mx-auto pb-30">
+      <div class="flex gap-4 items-center justify-center">
+        <!-- <Icon class="text-3xl text-white" name="briefcase" /> -->
+        <Heading text="Education" level={2} />
+      </div>
+      <Education />
+    </div>
+  </section>
+
+  <Contact />
+</Layout>

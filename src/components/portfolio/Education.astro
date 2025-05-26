@@ -1,0 +1,17 @@
+---
+import EducationItem from './EducationItem.astro';
+import education from '../../data/education.json';
+---
+<div class="relative max-md:mt-0 mt-8" aria-label="Education">
+  <ol class="relative mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      education.map((item, i) => (
+        <li key={i}>
+          <article role="article" aria-labelledby={`education-title-${i}`}>
+            <EducationItem {...item} />
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</div>

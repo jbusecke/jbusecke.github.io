@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /js/
-Disallow: /img/
-Disallow: /fonts/
-Disallow: /font-awesome/
-Disallow: /css/
-Disallow: /academicons/

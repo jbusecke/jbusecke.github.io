@@ -1,0 +1,158 @@
+---
+const { title, authors, journal, year, url, doi, image, type, note } =
+  Astro.props;
+
+// Add this function to fetch DOI metadata
+async function fetchDOIMetadata(doi) {
+  if (!doi) return null;
+
+  try {
+    const response = await fetch(`https://api.crossref.org/works/${doi}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const work = data.message;
+      const fallbackJournal =
+        work["container-title"]?.[0] || work["shortcontainer-title"]?.[0];
+
+      return {
+        title: work.title?.[0],
+        authors: work.author?.map((author) =>
+          `${author.given || ""} ${author.family || ""}`.trim(),
+        ),
+        journal: fallbackJournal,
+        year: work.published?.["date-parts"]?.[0]?.[0],
+        volume: work.volume,
+        issue: work.issue,
+        pages: work.page,
+        abstract: work.abstract,
+        url: work.URL,
+      };
+    }
+  } catch (error) {
+    console.error(`Error fetching DOI metadata for ${doi}:`, error);
+  }
+
+  return null;
+}
+
+// Fetch additional metadata if DOI is available
+const doiMetadata = doi ? await fetchDOIMetadata(doi) : null;
+
+// Use DOI metadata as fallback for missing fields
+const enrichedTitle = title || doiMetadata?.title;
+const enrichedAuthors = authors?.length ? authors : doiMetadata?.authors;
+const enrichedJournal = journal || doiMetadata?.journal;
+const enrichedYear = year || doiMetadata?.year;
+const enrichedUrl = url || doiMetadata?.url;
+
+const climateImages = [
+  "https://images.pexels.com/photos/110874/pexels-photo-110874.jpeg?auto=compress&cs=tinysrgb&h=350",
+  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+];
+const fallbackImage =
+  climateImages[Math.floor(Math.random() * climateImages.length)];
+const imgSrc = image && image.trim() !== "" ? image : fallbackImage;
+
+// Format authors: FirstInitial[.MiddleInitial.] LastName
+function formatAuthor(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0];
+  const lastName = parts.pop();
+  const initials = parts.map((n) => n[0].toUpperCase() + ".").join("");
+  const formatted = `${initials} ${lastName}`;
+  if (lastName.toLowerCase().includes("busecke")) {
+    return `<span class="text-mint-500 font-semibold">${formatted}</span>`;
+  }
+  return formatted;
+}
+const formattedAuthors = enrichedAuthors.map(formatAuthor).join(", ");
+
+// Combine year with journal if year is not already in journal string
+const yearString = enrichedYear.toString();
+const journalWithYear = enrichedJournal?.includes(yearString)
+  ? enrichedJournal
+  : `${enrichedJournal} (${yearString})`;
+
+// Define badge color by type
+const typeColorMap = {
+  journal: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+  conference:
+    "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+  preprint:
+    "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+  other: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200",
+};
+const badgeClass = typeColorMap[type?.toLowerCase()] || typeColorMap.other;
+---
+
+<div
+  class="bg-white dark:bg-zinc-800 shadow-md rounded-2xl p-6 max-w-screen-xl mx-auto grid gap-6"
+>
+  <!-- Top: Image and Title -->
+  <div>
+    <img
+      src={imgSrc}
+      alt={enrichedTitle}
+      class="rounded-xl mb-4 w-full h-48 object-cover object-top"
+    />
+    <h3 class="text-xl font-semibold text-zinc-800 dark:text-zinc-100">
+      {enrichedTitle}
+    </h3>
+    <div class="flex items-center gap-2 mt-1">
+      <h4 class="text-md text-zinc-600 dark:text-zinc-300">
+        {
+          enrichedUrl ? (
+            <a
+              href={enrichedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline hover:text-mint-600"
+            >
+              {journalWithYear}
+            </a>
+          ) : (
+            journalWithYear
+          )
+        }
+      </h4>
+      {
+        type && (
+          <span
+            class={`text-xs font-medium px-2.5 py-0.5 rounded-full ${badgeClass}`}
+          >
+            {type}
+          </span>
+        )
+      }
+      {
+        doi && (<span class="__dimensions_badge_embed__" data-doi={doi} data-style="small_rectangle"></span>) 
+      }
+    </div>
+  </div>
+
+  <!-- Bottom: Author block -->
+  <div
+    class="flex flex-col gap-2 text-zinc-700 dark:text-zinc-200 overflow-hidden"
+  >
+    <p class="text-sm" set:html={formattedAuthors} />
+    <!-- {
+      doi && (
+        <a
+          href={`https://doi.org/${doi}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs text-mint-600 underline"
+        >
+          DOI: {doi}
+        </a>
+      )
+    } -->
+  </div>
+</div>

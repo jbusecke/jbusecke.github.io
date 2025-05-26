@@ -1,0 +1,125 @@
+[
+  {
+    "id": "dheeshjith2025samudra",
+    "type": "article",
+    "doi": "10.1029/2024GL114318",
+    "preprint": [{
+      "doi": "https://doi.org/10.48550/arXiv.2412.03795"
+    }],
+    "image":"/images/publications/dheeshjith2025samudra.jpg"
+  },
+  {
+    "id": "buseckePREairsea",
+    "type": "preprint",
+    "doi": "10.31223/X5WQ47",
+    "journal": "EarthArXiv",
+    "image": "/images/publications/buseckePREairsea.jpg"
+  },
+  {
+    "id": "hermans2024flooding",
+    "type": "article",
+    "doi": "10.1029/2023EF004188"
+  },
+  {
+    "id": "NEURIPS2023_45fbcc01",
+    "title": "ClimSim: A large multi-scale dataset for hybrid physics-ML climate emulation",
+    "authors": [
+      "Sungduk Yu",
+      "Walter Hannah",
+      "Liran Peng",
+      "Jerry Lin",
+      "Mohamed Aziz Bhouri",
+      "Ritwik Gupta",
+      "Björn Lütjens",
+      "Julian C. Will",
+      "Gunnar Behrens",
+      "Julius Busecke",
+      "Mike Pritchard"
+    ],
+    "year": 2023,
+    "type": "conference",
+    "journal": "NeurIPS 2023",
+    "note": "Outstanding Paper Award",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/45fbcc01349292f5e059a0b8b02c8c3f-Paper-Datasets_and_Benchmarks.pdf"
+  },
+  {
+    "id": "schmidt2023freshwater",
+    "type": "article",
+    "doi": "10.1029/2023GL106530"
+  },
+  {
+    "id": "ditkovsky2023unique",
+    "type": "article",
+    "doi": "10.5194/bg-20-4711-2023"
+  },
+  {
+    "id": "rosentreter2023coastal",
+    "type": "article",
+    "doi": "10.1038/s41558-023-01682-9"
+  },
+  {
+    "id": "busecke2022diverging",
+    "type": "article",
+    "doi": "10.1029/2021AV000470"
+  },
+  {
+    "id": "loose2022gcmfilters",
+    "type": "article",
+    "doi":"10.21105/joss.03947"
+  },
+  {
+    "id": "nummelin2020diagnosing",
+    "doi":"10.1175/JPO-D-19-0256.1",
+    "type": "article"
+  },
+  {
+    "id": "busecke2020cmip6",
+    "type": "conference",
+    "doi": "10.1002/essoar.10504241.1"
+  },
+  {
+    "id": "bingham2019variability",
+    "type": "article",
+    "doi": "10.1029/2018JC014598"
+  },
+  {
+    "id": "busecke2019equatorial",
+    "type": "article",
+    "doi": "10.1029/2019GL082692"
+  },
+  {
+    "id": "busecke2019ocean",
+    "type": "article",
+    "doi": "10.1126/sciadv.aav5014"
+  },
+  {
+    "id": "swart2018reflections",
+    "type": "article",
+    "doi": "10.1038/s41612-018-0015-y"
+  },
+  {
+    "id": "busecke2017lateral",
+    "type": "article",
+    "doi": "10.1175/JPO-D-16-0215.1"
+  },
+  {
+    "id": "gordon2015differences",
+    "type": "article",
+    "doi": "10.5670/oceanog.2015.02"
+  },
+  {
+    "id": "gordon2015bottom",
+    "type": "article",
+    "doi": "10.1002/2015GL064457"
+  },
+  {
+    "id": "bingham2014north",
+    "type": "article",
+    "doi": "10.1002/2014JC009825"
+  },
+  {
+    "id": "busecke2014subtropical",
+    "type": "article",
+    "doi": "10.1002/2013JC009715"
+  }
+]

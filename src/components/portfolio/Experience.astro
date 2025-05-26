@@ -1,0 +1,33 @@
+---
+import ExperienceItem from './ExperienceItem.astro';
+import jobs from '../../data/jobs.json';
+
+function formatDateRange(start, end) {
+  const startFormatted = new Date(start).toLocaleDateString(undefined, { year: 'numeric', month: 'short' });
+  const endFormatted = end ? new Date(end).toLocaleDateString(undefined, { year: 'numeric', month: 'short' }) : "Present";
+  return `${startFormatted} – ${endFormatted}`;
+}
+
+const EXPERIENCE = jobs.map(job => ({
+  title: job.title,
+  company: job.company,  // Changed from job.employer to job.company
+  link: job.url || undefined,
+  date: formatDateRange(job.start, job.end),
+  description: job.description || '',
+  current: !job.end, // no end date means current job
+}));
+---
+<div class="relative max-md:mt-0 mt-8" aria-label="Professional experience">
+  <ol class="relative mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      EXPERIENCE.map((item, i) => (
+        <li key={i}>
+          <article role="article" aria-labelledby={`experience-title-${i}`}>
+            <ExperienceItem {...item} />
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+

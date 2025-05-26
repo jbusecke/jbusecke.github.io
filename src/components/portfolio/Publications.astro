@@ -1,0 +1,19 @@
+---
+import PublicationItem from './PublicationItem.astro';
+import publications from '../../data/publications.json';
+---
+<!-- Add wrapper here to isolate drop shadows -->
+<div class="relative z-0 overflow-visible">
+  <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      publications.map((item, i) => (
+        <li key={i} class="overflow-visible"> <!-- Also allow li to overflow -->
+          <article role="article" aria-labelledby={`publication-title-${i}`} class="overflow-visible">
+            <PublicationItem {...item} />
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+

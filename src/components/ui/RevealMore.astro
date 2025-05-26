@@ -1,0 +1,83 @@
+---
+// Props with defaults
+const {
+  label = '',
+  containerId = 'reveal-container',
+  buttonId = 'reveal-button',
+  maxHeightMobile = '20rem',
+  maxHeightTablet = '23rem',
+  maxHeightDesktop = '33rem',
+} = Astro.props;
+---
+
+<reveal-more
+  data-container-id={containerId}
+  data-button-id={buttonId}
+  data-label={label}
+  data-mobile={maxHeightMobile}
+  data-tablet={maxHeightTablet}
+  data-desktop={maxHeightDesktop}
+>
+  <!-- Outer container controls max-height and overflow -->
+  <div id={containerId} class="relative overflow-hidden transition-all duration-700 ease-in-out">
+    <!-- Inner wrapper for padding to protect box shadows -->
+    <div class="pb-6 px-2 sm:px-4">
+      <slot />
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <button id={buttonId} class="font-bold cursor-pointer text-mint-400 dark:text-mint-100 hover:text-mint-500 dark:hover:text-mint-300 transition-all">
+      {label}
+    </button>
+  </div>
+</reveal-more>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    class RevealMore extends HTMLElement {
+      connectedCallback() {
+        const container = document.getElementById(this.dataset.containerId);
+        const button = this.querySelector(`#${this.dataset.buttonId}`);
+
+        if (container && button) {
+          let expanded = false;
+
+          const getCollapsedHeight = () => {
+            const w = window.innerWidth;
+            if (w < 640) return this.dataset.mobile || '20rem';
+            if (w < 1024) return this.dataset.tablet || '23rem';
+            return this.dataset.desktop || '33rem';
+          };
+
+          const collapse = () => {
+            container.style.maxHeight = getCollapsedHeight();
+            button.textContent = "Show More";
+          };
+
+          const expand = () => {
+            container.style.maxHeight = container.scrollHeight + 'px';
+            button.textContent = "Show Less";
+          };
+
+          collapse();
+
+          button.addEventListener('click', () => {
+            if (expanded) {
+              collapse();
+            } else {
+              expand();
+            }
+            expanded = !expanded;
+          });
+
+          window.addEventListener('resize', () => {
+            if (!expanded) collapse();
+          });
+        }
+      }
+    }
+
+    customElements.define('reveal-more', RevealMore);
+  });
+</script>
