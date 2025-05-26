@@ -1,8 +1,6 @@
 name: deploy-site
 on:
   push:
-    branches:
-      - source
   pull_request:
   workflow_dispatch:
 jobs:
