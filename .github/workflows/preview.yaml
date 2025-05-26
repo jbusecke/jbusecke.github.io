@@ -94,7 +94,7 @@ jobs:
           && steps.fc.outputs.comment-id != ''
         uses: actions/download-artifact@v4
         with:
-          run-id: ${{ github.rest.event.workflow_run.id }}
+          run-id: ${{ github.event.workflow_run.id }}
       - name: Unzip site
         if:  |
           github.event.workflow_run.conclusion == 'success'
