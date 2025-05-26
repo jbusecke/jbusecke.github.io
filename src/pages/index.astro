@@ -36,8 +36,8 @@ const upcoming_events = events
 
   <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16" id="upcoming_events">
     <div class="flex flex-col pt-8 max-w-4xl mx-auto">
-      <div class="flex gap-4 items-center justify-center">
-        <Icon class="text-3xl dark:text-white text-blacktext" name="briefcase" />
+      <div class="flex gap-4 items-center justify-center text-center">
+        <Icon class="text-3xl md:text-4xl dark:text-white text-blacktext" name="briefcase" />
         <Heading text="Upcoming" textGradient="Events and Presentations" level={2}/>
       </div>
 
@@ -86,15 +86,16 @@ const upcoming_events = events
 
    <section
     class="bg-gradient-to-t dark:from-[#0e0e10] from-[#fff] from-50% to-transparent to-100% scroll-m-16"
-    id="projects"
+    id="videos"
   >
-    <div class="flex flex-col gap-8 max-w-7xl mx-auto">
+    <div class="flex flex-col gap-8 max-w-4xl mx-auto">
         <div class="flex gap-4 items-center justify-center text-center">
-          <Icon class="text-3xl dark:text-white text-blacktext" name="movie" />
+          <Icon class="text-3xl md:text-4xl dark:text-white text-blacktext" name="movie" />
           <Heading text="Data Visualization" textGradient="Gallery" level={2}/>
         </div>
-
-        <VideoCarousel videos={videos} client:load />
+        <div class="w-full">
+          <VideoCarousel videos={videos} client:load />
+        </div>
     </div>
   </section>
 
