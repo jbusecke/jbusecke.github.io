@@ -22,7 +22,7 @@ export const ABOUT_ME = {
     years_experience: yearsElapsed,
 }
 export const SOCIAL_LINKS = {
-  linkedin: "www.linkedin.com/in/julius-busecke",
+  linkedin: "https://linkedin.com/in/julius-busecke",
   mastodon: "https://mastodon.social/@username",
   github: "https://github.com/jbusecke",
   vimeo: "TBD",
@@ -39,4 +39,8 @@ export const PAGE = {
     author: "Julius Busecke",
     sitename: "Site Name",
     ogimage: ABOUT_ME.profile_image,
+    title_blog: "Julius Busecke's Blog",
+    description_blog: "Welcome to my blog, where I share thoughts on climate science, software engineering, and open science.",
+    ogimage_blog: "/images/imagedefault.webp",
+    ogimage_blog_alt: "Julius Busecke's Blog Image",
 }
