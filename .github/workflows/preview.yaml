@@ -100,15 +100,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
       - name: Files in current directory
         run: |
-          ls -la .
-      - name: Unzip site
-        if:  |
-          github.event.workflow_run.conclusion == 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id != ''
-        run: |
-          unzip github-pages.zip
-          rm -f github-pages.zip
+          ls -la download
       # Push the site's HTML to Netlify and get the preview URL
       - name: Deploy to Netlify
         if: |
@@ -118,7 +110,7 @@ jobs:
         id: netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: artifact
+          publish-dir: download
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-comment: false
