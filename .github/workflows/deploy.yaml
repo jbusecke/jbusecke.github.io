@@ -18,9 +18,12 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Install, build, and upload your site
         uses: withastro/action@v3
+        with:
+          node-version: '22'
+          path: '.'
 
 
       # - name: Deploy
