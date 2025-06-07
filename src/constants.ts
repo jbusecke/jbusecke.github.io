@@ -25,7 +25,7 @@ export const SOCIAL_LINKS = {
   linkedin: "https://linkedin.com/in/julius-busecke",
   mastodon: "https://mastodon.social/@username",
   github: "https://github.com/jbusecke",
-  vimeo: "TBD",
+  vimeo: "https://vimeo.com/user52830334",
   youtube: "https://www.youtube.com/@codeandcurrents",
   instagram: "https://www.instagram.com/codeandcurrents/"
 };
