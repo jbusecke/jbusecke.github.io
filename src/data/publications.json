@@ -23,6 +23,12 @@
     "image": "/images/publications/buseckePREairsea.jpg"
   },
   {
+    "id": "hermansPREstormsurgenn",
+    "type": "preprint",
+    "doi": "10.5194/egusphere-2025-196",
+    "image": "/images/publications/hermansPREstormsurgenn.jpg"
+  },
+  {
     "id": "hermans2024flooding",
     "type": "article",
     "doi": "10.1029/2023EF004188"
