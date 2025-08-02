@@ -1,5 +1,11 @@
 [
   {
+    "id": "heimdalbias",
+    "type": "article",
+    "doi": "10.1088/3049-4753/adddc3",
+    "image": "/images/publications/heimdalbias.jpg"
+  },
+  {
     "id": "hermanspreannualsealevel",
     "type": "preprint",
     "doi": "10.22541/essoar.174940475.52428471/v1",
@@ -10,10 +16,12 @@
     "id": "dheeshjith2025samudra",
     "type": "article",
     "doi": "10.1029/2024GL114318",
-    "preprint": [{
-      "doi": "https://doi.org/10.48550/arXiv.2412.03795"
-    }],
-    "image":"/images/publications/dheeshjith2025samudra.jpg"
+    "preprint": [
+      {
+        "doi": "https://doi.org/10.48550/arXiv.2412.03795"
+      }
+    ],
+    "image": "/images/publications/dheeshjith2025samudra.jpg"
   },
   {
     "id": "hermansPREstormsurgenn",
@@ -78,11 +86,11 @@
   {
     "id": "loose2022gcmfilters",
     "type": "article",
-    "doi":"10.21105/joss.03947"
+    "doi": "10.21105/joss.03947"
   },
   {
     "id": "nummelin2020diagnosing",
-    "doi":"10.1175/JPO-D-19-0256.1",
+    "doi": "10.1175/JPO-D-19-0256.1",
     "type": "article"
   },
   {
