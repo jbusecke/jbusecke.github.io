@@ -1,15 +1,16 @@
 [
-    {
-        "id": "julius-busecke",
-        "name": "Julius Busecke",
-        "url": "https://wwwjuliusbusecke.com",
-    },
-     {"id": "arne-biastoch",
-      "name":"Prof. Dr. Arne Biastoch",
-      "url": "https://www.geomar.de/en/staff/fb1/tm/abiastoch/"
-    },
-    {
-        "id": "arnold-gordon",
-        "name": "Prof. Arnold L. Gordon"
-    },
+  {
+    "id": "julius-busecke",
+    "name": "Julius Busecke",
+    "url": "https://wwwjuliusbusecke.com"
+  },
+  {
+    "id": "arne-biastoch",
+    "name": "Prof. Dr. Arne Biastoch",
+    "url": "https://www.geomar.de/en/staff/fb1/tm/abiastoch/"
+  },
+  {
+    "id": "arnold-gordon",
+    "name": "Prof. Arnold L. Gordon"
+  }
 ]
