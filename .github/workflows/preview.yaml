@@ -79,7 +79,7 @@ jobs:
           github.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: "./dist"
           name: github-pages
