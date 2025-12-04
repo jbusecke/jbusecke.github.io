@@ -24,11 +24,10 @@
     "image": "/images/publications/dheeshjith2025samudra.jpg"
   },
   {
-    "id": "hermansPREstormsurgenn",
-    "type": "preprint",
-    "doi": "10.5194/egusphere-2025-196",
-    "image": "/images/publications/hermansPREstormsurgenn.jpg",
-    "journal": "EGUsphere"
+    "id": "hermansstormsurgenn",
+    "type": "article",
+    "doi": "10.5194/nhess-25-4593-2025",
+    "image": "/images/publications/hermansstormsurgenn.jpg",
   },
   {
     "id": "busecke_balwada2025airsea",
