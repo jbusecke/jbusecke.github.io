@@ -36,9 +36,10 @@
     "image": "/images/publications/busecke_balwada2025airsea.jpg"
   },
   {
-    "id": "hermans2024flooding",
+    "id": "hermans_flooding",
     "type": "article",
-    "doi": "10.1029/2023EF004188"
+    "doi": "10.1029/2023EF004188",
+    "image": "/images/publications/hermans_flooding.jpg"
   },
   {
     "id": "NEURIPS2023_45fbcc01",
@@ -60,17 +61,20 @@
     "type": "conference",
     "journal": "NeurIPS 2023",
     "note": "Outstanding Paper Award",
-    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/45fbcc01349292f5e059a0b8b02c8c3f-Paper-Datasets_and_Benchmarks.pdf"
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/45fbcc01349292f5e059a0b8b02c8c3f-Paper-Datasets_and_Benchmarks.pdf",
+    "image": "/images/publications/climsim.png"
   },
   {
-    "id": "schmidt2023freshwater",
+    "id": "schmidt_meltwater",
     "type": "article",
-    "doi": "10.1029/2023GL106530"
+    "doi": "10.1029/2023GL106530",
+    "image": "/images/publications/schmidt_meltwater.png"
   },
   {
-    "id": "ditkovsky2023unique",
+    "id": "ditkovsky_unique",
     "type": "article",
-    "doi": "10.5194/bg-20-4711-2023"
+    "doi": "10.5194/bg-20-4711-2023",
+    "image": "/images/publications/ditkovsky_unique.png"
   },
   {
     "id": "rosentreter2023coastal",
@@ -78,14 +82,16 @@
     "doi": "10.1038/s41558-023-01682-9"
   },
   {
-    "id": "busecke2022diverging",
+    "id": "busecke_diverging",
     "type": "article",
-    "doi": "10.1029/2021AV000470"
+    "doi": "10.1029/2021AV000470",
+    "image": "/images/publications/busecke_diverging.png"
   },
   {
-    "id": "loose2022gcmfilters",
+    "id": "loose_gcmfilters",
     "type": "article",
-    "doi": "10.21105/joss.03947"
+    "doi": "10.21105/joss.03947",
+    "image": "/images/publications/loose_gcmfilters.png"
   },
   {
     "id": "nummelin2020diagnosing",
