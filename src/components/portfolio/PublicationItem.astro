@@ -16,39 +16,87 @@ function sanitizeTitleHTML(input) {
 }
 
 
+// Helper to add delay for rate limiting
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 // Add this function to fetch DOI metadata
-async function fetchDOIMetadata(doi) {
+async function fetchDOIMetadata(doi: string) {
   if (!doi) return null;
 
-  try {
-    const response = await fetch(`https://api.crossref.org/works/${doi}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
+  // Add random delay to prevent rate limiting (stagger requests)
+  const randomDelay = Math.random() * 200 + 100; // 100-300ms random delay
+  await delay(randomDelay);
 
-    if (response.ok) {
-      const data = await response.json();
-      const work = data.message;
-      const fallbackJournal =
-        work["container-title"]?.[0] || work["shortcontainer-title"]?.[0];
+  // Retry logic for rate limiting
+  let retries = 3;
+  let lastError = null;
 
-      return {
-        title: work.title?.[0],
-        authors: work.author?.map((author) =>
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(`https://api.crossref.org/works/${doi}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const work = data.message;
+        const fallbackJournal =
+          work["container-title"]?.[0] ||
+          work["short-container-title"]?.[0] ||
+          work.institution?.[0]?.name;
+
+        const extractedAuthors = work.author?.map((author) =>
           `${author.given || ""} ${author.family || ""}`.trim(),
-        ),
-        journal: fallbackJournal,
-        year: work.published?.["date-parts"]?.[0]?.[0],
-        volume: work.volume,
-        issue: work.issue,
-        pages: work.page,
-        abstract: work.abstract,
-        url: work.URL,
-      };
+        ) || [];
+
+        const extractedYear = work.published?.["date-parts"]?.[0]?.[0];
+
+        const result = {
+          title: work.title?.[0],
+          authors: extractedAuthors,
+          journal: fallbackJournal,
+          year: extractedYear,
+          volume: work.volume,
+          issue: work.issue,
+          pages: work.page,
+          abstract: work.abstract,
+          url: work.URL,
+        };
+
+        // Log if missing critical data
+        if (!extractedAuthors || extractedAuthors.length === 0) {
+          console.warn(`[DOI] ${doi} - No authors found`);
+        }
+        if (!extractedYear) {
+          console.warn(`[DOI] ${doi} - No year found. published field:`, work.published);
+        }
+        if (!fallbackJournal) {
+          console.warn(`[DOI] ${doi} - No journal/institution found. Full response:`, JSON.stringify(work, null, 2));
+        }
+
+        return result;
+      } else if (response.status === 429) {
+        // Rate limited - wait and retry
+        const waitTime = attempt * 1000; // 1s, 2s, 3s
+        console.warn(`[DOI] ${doi} - Rate limited (429), attempt ${attempt}/${retries}. Waiting ${waitTime}ms...`);
+        await delay(waitTime);
+        lastError = `429 Too Many Requests (attempt ${attempt})`;
+        continue; // Try again
+      } else {
+        console.warn(`[DOI] Failed to fetch ${doi}: ${response.status}`);
+        return null;
+      }
+    } catch (error) {
+      console.error(`Error fetching DOI metadata for ${doi}:`, error);
+      lastError = error;
     }
-  } catch (error) {
-    console.error(`Error fetching DOI metadata for ${doi}:`, error);
+  }
+
+  // If we exhausted retries due to 429, fail the build
+  if (lastError) {
+    throw new Error(`[DOI] Failed to fetch ${doi} after ${retries} retries. Last error: ${lastError}. This indicates rate limiting - the build must fail to alert CI.`);
   }
 
   return null;
@@ -59,7 +107,7 @@ const doiMetadata = doi ? await fetchDOIMetadata(doi) : null;
 
 // Use DOI metadata as fallback for missing fields
 const enrichedTitle = title || doiMetadata?.title;
-const enrichedAuthors = authors?.length ? authors : doiMetadata?.authors;
+const enrichedAuthors = authors?.length ? authors : (doiMetadata?.authors || []);
 const enrichedJournal = journal || doiMetadata?.journal;
 const enrichedYear = year || doiMetadata?.year;
 const enrichedUrl = url || doiMetadata?.url;
@@ -86,13 +134,17 @@ function formatAuthor(name) {
   }
   return formatted;
 }
-const formattedAuthors = enrichedAuthors.map(formatAuthor).join(", ");
+const formattedAuthors = enrichedAuthors.length > 0
+  ? enrichedAuthors.map(formatAuthor).join(", ")
+  : '<span class="text-gray-400 dark:text-gray-500 italic">Authors not available</span>';
 
 // Combine year with journal if year is not already in journal string
-const yearString = enrichedYear.toString();
-const journalWithYear = enrichedJournal?.includes(yearString)
+const yearString = enrichedYear ? enrichedYear.toString() : "";
+const journalWithYear = enrichedJournal && yearString && enrichedJournal.includes(yearString)
   ? enrichedJournal
-  : `${enrichedJournal} (${yearString})`;
+  : enrichedJournal && yearString
+  ? `${enrichedJournal} (${yearString})`
+  : enrichedJournal || "Publication details not available";
 
 // Define badge color by type
 const typeColorMap = {
