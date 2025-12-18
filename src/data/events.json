@@ -1,5 +1,12 @@
 [
   {
+    "id": "agu25",
+    "name": "American Geophysical Union Fall Meeting 2025",
+    "location": "New Orleans, LA",
+    "date": "2025-12-15",
+    "stop_date": "2025-12-19"
+  },
+  {
     "id": "osm2024",
     "name": "Ocean Sciences Meeting 2024",
     "location": "New Orleans, LA",

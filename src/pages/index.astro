@@ -17,7 +17,6 @@ import Heading from "../components/ui/Heading.astro";
 import videos from '../data/videos.json';
 
 import events from "../data/events.json";
-import presentations from '../data/presentations.json';
 import ListEventsPresentations from "../components/portfolio/ListEventsPresentations.astro";
 import VideoCarousel from "../components/VideoCarousel";
 
@@ -26,7 +25,11 @@ import VideoCarousel from "../components/VideoCarousel";
 
 const now = new Date();
 const upcoming_events = events
-  .filter(e => new Date(e.date) > now)
+  .filter(e => {
+    // Use stop_date if available, otherwise use date
+    const endDate = e.stop_date ? new Date(e.stop_date) : new Date(e.date);
+    return endDate > now;
+  })
   .sort((a, b) => new Date(a.date) - new Date(b.date))
   .slice(0, 3);
 ---
@@ -42,7 +45,7 @@ const upcoming_events = events
       </div>
 
       {upcoming_events.length > 0 ? (
-        <ListEventsPresentations events={upcoming_events}, presentations={presentations} />
+        <ListEventsPresentations events={upcoming_events} />
       ) : (
           <div class="relative max-md:mt-0 mt-8 flex justify-center items-center dark:text-white text-blacktext">
           <p>No upcoming events. Please check back later....</p>
