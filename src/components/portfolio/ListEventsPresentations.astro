@@ -1,42 +1,35 @@
 ---
 import EventItem from "./EventItem.astro";
+import contributions from "../../data/contributions.json";
 
 const {
   events,
-  presentations,
   showVideoLink = true,
   showWebsiteLink = true,
 } = Astro.props;
 
-// Group presentations by event_id
-const presentationsByEvent = {};
-for (const p of presentations) {
-  const list = presentationsByEvent[p.event_id] ?? [];
-  list.push(p);
-  presentationsByEvent[p.event_id] = list;
+// Group contributions by event_id
+const contributionsByEvent = {};
+for (const c of contributions) {
+  const list = contributionsByEvent[c.event_id] ?? [];
+  list.push(c);
+  contributionsByEvent[c.event_id] = list;
 }
 ---
 
-<div class="relative max-md:mt-0 mt-8" aria-label="events">
-  <ol class="relative mt-10">
+<div class="relative max-md:mt-0 mt-8 max-w-4xl mx-auto" aria-label="events">
+  <div class="space-y-8">
     {
       events.map((event, index) => (
-        <li class="">
-          <article role="article" aria-labelledby={`experience-title-${index}`}>
-            <div
-              class="flex flex-col gap-2  text-zinc-00 dark:text-zinc-300 md:col-span-3"
-              aria-describedby={`event-title-${index}`}
-            >
-              <EventItem
-                event={event}
-                presentations={presentationsByEvent[event.id] ?? []}
-                showVideoLink={showVideoLink}
-                showWebsiteLink={showWebsiteLink}
-              />
-            </div>
-          </article>
-        </li>
+        <article role="article" aria-labelledby={`event-title-${index}`}>
+          <EventItem
+            event={event}
+            contributions={contributionsByEvent[event.id] ?? []}
+            showVideoLink={showVideoLink}
+            showWebsiteLink={showWebsiteLink}
+          />
+        </article>
       ))
     }
-  </ol>
+  </div>
 </div>

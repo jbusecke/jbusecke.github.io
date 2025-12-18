@@ -1,56 +1,133 @@
 ---
 const {
   event,
-  presentations = [],
+  contributions = [],
   showVideoLink = true,
   showWebsiteLink = true
 } = Astro.props;
 
-import PresentationItem from './PresentationItem.astro';
+// Format date for display (Dec 15-19, 2025 format)
+function formatDateRange(start, end) {
+  const startDateObj = new Date(start);
+  const startMonth = startDateObj.toLocaleDateString('en-US', { month: 'short' });
+  const startDay = startDateObj.getDate();
+  const startYear = startDateObj.getFullYear();
+
+  if (!end) {
+    return `${startMonth} ${startDay}, ${startYear}`;
+  }
+
+  const endDateObj = new Date(end);
+  const endMonth = endDateObj.toLocaleDateString('en-US', { month: 'short' });
+  const endDay = endDateObj.getDate();
+  const endYear = endDateObj.getFullYear();
+
+  // Same month and year: "Dec 15-19, 2025"
+  if (startMonth === endMonth && startYear === endYear) {
+    return `${startMonth} ${startDay}-${endDay}, ${startYear}`;
+  }
+
+  // Different months, same year: "Nov 30-Dec 2, 2025"
+  if (startYear === endYear) {
+    return `${startMonth} ${startDay}-${endMonth} ${endDay}, ${startYear}`;
+  }
+
+  // Different years: "Dec 30, 2024-Jan 2, 2025"
+  return `${startMonth} ${startDay}, ${startYear}-${endMonth} ${endDay}, ${endYear}`;
+}
+
+// Capitalize first letter of each word
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+const displayDate = formatDateRange(event.date, event.stop_date);
 ---
 
-<div
-  class="relative mx-12 pb-12 grid md:grid-cols-5 md:gap-10 before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-['']"
->
-  <!-- Left Column -->
-  <div class="pb-12 md:col-span-2">
-    <div class="sticky top-0">
-      <span
-        class="absolute -left-[42px] text-5xl text-mint-400 rounded-full drop-shadow-[0px_0px_8px_rgba(0,_255,_94,_1)]"
-        >&bull;</span
+<div class="mb-8 max-w-4xl mx-auto rounded-xl border border-riptide-200 dark:border-riptide-700 p-4 bg-riptide-50/50 dark:bg-riptide-900/10 transition-colors hover:bg-riptide-100 dark:hover:bg-riptide-900/20">
+  <!-- Event Header -->
+  <div class="mb-4">
+    {event.url ? (
+      <a
+        href={event.url}
+        target="_blank"
+        class="font-semibold text-riptide-800 dark:text-riptide-200 hover:underline block text-lg"
       >
-      <h3 class="text-xl font-bold text-mint-400">{event.name}</h3>
-      <h4 class="text-xl font-semibold text-zinc-600 dark:text-white">
-        {event.location}
-      </h4>
-      <time datetime={event.date} class="text-sm text-zinc-600/80 dark:text-white/80">
-        {event.date}
+        {event.name}
+      </a>
+    ) : (
+      <h3 class="font-semibold text-riptide-800 dark:text-riptide-200 text-lg">{event.name}</h3>
+    )}
+    <div class="flex items-center gap-3 text-zinc-600 dark:text-zinc-400 mt-1 text-sm">
+      <span>{event.location}</span>
+      <span>•</span>
+      <time datetime={event.date}>
+        {displayDate}
       </time>
     </div>
   </div>
 
-  <!-- Right Column: Presentations -->
-  <div class="flex flex-col gap-4 pb-4 text-zinc-900 dark:text-zinc-300 md:col-span-3">
-    <div class="mt-4">
-      <h5 class="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-2">
-        Presentations
-      </h5>
+  <!-- Contributions -->
+  {contributions.length > 0 && (
+    <div class="space-y-3 border-t border-riptide-200 dark:border-riptide-700 pt-4">
+      {contributions.map(contrib => (
+        <div class="flex items-start gap-3">
+          <span class="text-xs font-medium px-2 py-1 bg-riptide-100 dark:bg-riptide-900/60 text-riptide-700 dark:text-riptide-300 rounded-full whitespace-nowrap">
+            {contrib.role}
+          </span>
+          <div class="flex-1">
+            {(contrib.url || contrib.website_url) ? (
+              <a
+                href={contrib.url || contrib.website_url}
+                target="_blank"
+                class="font-semibold text-riptide-800 dark:text-riptide-200 hover:underline block"
+              >
+                {capitalize(contrib.type)}: {contrib.title}
+              </a>
+            ) : (
+              <h6 class="font-semibold text-riptide-800 dark:text-riptide-200">
+                {capitalize(contrib.type)}: {contrib.title}
+              </h6>
+            )}
 
-      {presentations.length > 0 ? (
-        <div class="space-y-3">
-          {presentations.map(p => (
-            <div class="group rounded-xl border border-zinc-200 dark:border-zinc-700 p-4 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800">
-              <PresentationItem
-                presentation={p}
-                showVideoLink={showVideoLink}
-                showWebsiteLink={showWebsiteLink}
-              />
-            </div>
-          ))}
+            {/* Links section */}
+            {(contrib.video_url || contrib.slides_url) && (
+              <div class="flex flex-wrap gap-2 mt-1">
+                {showVideoLink && contrib.video_url && (
+                  <a
+                    href={contrib.video_url}
+                    target="_blank"
+                    class="text-sm text-riptide-600 dark:text-riptide-400 hover:underline flex items-center gap-1"
+                  >
+                    <span>🎥</span> Video
+                  </a>
+                )}
+                {contrib.slides_url && (
+                  <a
+                    href={contrib.slides_url}
+                    target="_blank"
+                    class="text-sm text-riptide-600 dark:text-riptide-400 hover:underline flex items-center gap-1"
+                  >
+                    <span>📑</span> Slides
+                  </a>
+                )}
+              </div>
+            )}
+
+            {/* Optional note/subtitle */}
+            {contrib.note && (
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 italic mt-1">
+                {contrib.note}
+              </p>
+            )}
+            {contrib.subtitle && (
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                {contrib.subtitle}
+              </p>
+            )}
+          </div>
         </div>
-      ) : (
-        <p class="text-sm text-gray-400 italic">No presentations listed yet.</p>
-      )}
+      ))}
     </div>
-  </div>
+  )}
 </div>

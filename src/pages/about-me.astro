@@ -12,7 +12,6 @@ import { ABOUT_ME, CONTACT, PAGE } from "../constants";
 import ListEventsPresentations from "../components/portfolio/ListEventsPresentations.astro";
 
 import events from "../data/events.json";
-import presentations from "../data/presentations.json";
 import RevealMore from "../components/ui/RevealMore.astro";
 import { languages } from "../utils/languages";
 
@@ -47,7 +46,11 @@ const yearsExperience = ABOUT_ME.years_experience;
 
 const now = new Date();
 const past_events = events
-  .filter((e) => new Date(e.date) <= now)
+  .filter((e) => {
+    // Use stop_date if available, otherwise use date
+    const endDate = e.stop_date ? new Date(e.stop_date) : new Date(e.date);
+    return endDate <= now;
+  })
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
 const { frontmatter } = Astro.props;
@@ -139,7 +142,6 @@ If you're interested in collaborating, exploring a shared project, or just talki
       >
         <ListEventsPresentations
           events={past_events}
-          presentations={presentations}
         />
       </RevealMore>
     </div>
