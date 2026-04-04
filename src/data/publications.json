@@ -7,10 +7,17 @@
   },
   {
     "id": "hermanspreannualsealevel",
-    "type": "preprint",
-    "doi": "10.22541/essoar.174940475.52428471/v1",
-    "image": "/images/publications/hermanspreannualsealevel.jpg",
-    "journal": "ESS Open Archive"
+    "type": "article",
+    "doi": "10.1029/2025EF006735",
+    "image": "https://agupubs.onlinelibrary.wiley.com/cms/asset/116c8efc-33ed-46ca-8ca2-60c15d47de40/eft270308-fig-0002-m.png",
+    "journal": "Earth's Future",
+    "preprint": [
+      {
+        "doi": "10.22541/essoar.174940475.52428471/v1",
+        "image": "/images/publications/hermanspreannualsealevel.jpg",
+        "journal": "ESS Open Archive"
+      }
+    ]
   },
   {
     "id": "dheeshjith2025samudra",
