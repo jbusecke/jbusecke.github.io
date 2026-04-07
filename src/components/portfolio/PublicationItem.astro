@@ -27,11 +27,11 @@ async function fetchDOIMetadata(doi: string) {
   const randomDelay = Math.random() * 200 + 100; // 100-300ms random delay
   await delay(randomDelay);
 
-  // Retry logic for rate limiting
-  let retries = 3;
+  // Retry logic with exponential backoff for rate limiting
+  const maxRetries = 7;
   let lastError = null;
 
-  for (let attempt = 1; attempt <= retries; attempt++) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       const response = await fetch(`https://api.crossref.org/works/${doi}`, {
         headers: {
@@ -79,8 +79,8 @@ async function fetchDOIMetadata(doi: string) {
         return result;
       } else if (response.status === 429) {
         // Rate limited - wait and retry
-        const waitTime = attempt * 1000; // 1s, 2s, 3s
-        console.warn(`[DOI] ${doi} - Rate limited (429), attempt ${attempt}/${retries}. Waiting ${waitTime}ms...`);
+        const waitTime = Math.min(1000 * 2 ** (attempt - 1), 60000); // exponential backoff: 1s, 2s, 4s, 8s, 16s, 32s, 60s
+        console.warn(`[DOI] ${doi} - Rate limited (429), attempt ${attempt}/${maxRetries}. Waiting ${waitTime}ms...`);
         await delay(waitTime);
         lastError = `429 Too Many Requests (attempt ${attempt})`;
         continue; // Try again
@@ -96,7 +96,7 @@ async function fetchDOIMetadata(doi: string) {
 
   // If we exhausted retries due to 429, fail the build
   if (lastError) {
-    throw new Error(`[DOI] Failed to fetch ${doi} after ${retries} retries. Last error: ${lastError}. This indicates rate limiting - the build must fail to alert CI.`);
+    throw new Error(`[DOI] Failed to fetch ${doi} after ${maxRetries} retries. Last error: ${lastError}. This indicates rate limiting - the build must fail to alert CI.`);
   }
 
   return null;
