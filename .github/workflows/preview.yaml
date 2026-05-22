@@ -1,18 +1,6 @@
 name: preview-site
 on:
-  workflow_call:
-    inputs:
-      pr_number:
-        type: number
-        required: true
-      pr_sha:
-        type: string
-        required: true
-    secrets:
-      NETLIFY_AUTH_TOKEN:
-        required: true
-      NETLIFY_SITE_ID:
-        required: true
+  pull_request:
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,11 +14,12 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Download Artifact site
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          path: "./dist"
-          name: github-pages
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+      - name: Install and build
+        run: npm install && npm run build
       - name: Deploy to Netlify
         id: netlify
         uses: nwtgck/actions-netlify@4cbaf4c08f1a7bfa537d6113472ef4424e4eb654 # v3.0
@@ -39,14 +28,15 @@ jobs:
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-comment: false
+          enable-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 5
       - name: Post or update preview comment
         env:
-          PR_NUMBER: ${{ inputs.pr_number }}
-          COMMIT_SHA: ${{ inputs.pr_sha }}
+          PR_NUMBER: ${{ github.event.number }}
+          COMMIT_SHA: ${{ github.sha }}
           PREVIEW_URL: ${{ steps.netlify.outputs.deploy-url }}
         run: |
           comment_message="This pull request is being automatically built with [GitHub Actions](https://github.com/features/actions) and [Netlify](https://www.netlify.com/). To see the status of your deployment, click below."
