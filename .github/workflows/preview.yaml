@@ -1,92 +1,39 @@
 name: preview-site
 on:
-  workflow_run:
-    workflows:
-      - deploy-site
-    types:
-      - requested
-      - completed
+  workflow_call:
+    inputs:
+      pr_number:
+        type: number
+        required: true
+      pr_sha:
+        type: string
+        required: true
+    secrets:
+      NETLIFY_AUTH_TOKEN:
+        required: true
+      NETLIFY_SITE_ID:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: preview
+    permissions:
+      contents: read
+      pull-requests: write
     defaults:
       run:
         shell: bash
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v6
-      - name: Set message value
-        run: |
-          echo "comment_message=This pull request is being automatically built with [GitHub Actions](https://github.com/features/actions) and [Netlify](https://www.netlify.com/). To see the status of your deployment, click below." >> $GITHUB_ENV
-      - name: Find Pull Request
-        id: find-pull-request
-        run: |
-          pr_data=$(gh api repos/${{ github.repository }}/pulls \
-            --jq '.[] | select(.head.sha == "${{ github.event.workflow_run.head_commit.id }}") | "\(.number) \(.head.sha)"' \
-            | head -1)
-          if [ -z "$pr_data" ]; then
-            echo "No pull request associated with git commit SHA: ${{ github.event.workflow_run.head_commit.id }}"
-            echo "number=" >> "$GITHUB_OUTPUT"
-            echo "sha=" >> "$GITHUB_OUTPUT"
-          else
-            pr_number=$(echo "$pr_data" | cut -d' ' -f1)
-            pr_sha=$(echo "$pr_data" | cut -d' ' -f2)
-            echo "Found pull request $pr_number, with head sha: $pr_sha"
-            echo "number=$pr_number" >> "$GITHUB_OUTPUT"
-            echo "sha=$pr_sha" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Find Comment
-        if: steps.find-pull-request.outputs.number != ''
-        id: fc
-        run: |
-          comment_id=$(gh api "repos/${{ github.repository }}/issues/${{ steps.find-pull-request.outputs.number }}/comments" \
-            --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | contains("${{ env.comment_message }}"))) | .id' \
-            | head -1)
-          echo "comment-id=${comment_id}" >> "$GITHUB_OUTPUT"
-      - name: Create comment
-        if: |
-          github.event.workflow_run.conclusion != 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id == ''
-        run: |
-          cat > /tmp/comment-body.md << 'EOF'
-          ${{ env.comment_message }}
-          🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
-          EOF
-          gh pr comment "${{ steps.find-pull-request.outputs.number }}" --body-file /tmp/comment-body.md
-      - name: Update comment
-        if: |
-          github.event.workflow_run.conclusion != 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id != ''
-        run: |
-          cat > /tmp/comment-body.md << 'EOF'
-          ${{ env.comment_message }}
-          🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
-          EOF
-          jq -Rs '{"body": .}' /tmp/comment-body.md | \
-            gh api --method PATCH \
-              "repos/${{ github.repository }}/issues/comments/${{ steps.fc.outputs.comment-id }}" \
-              --input -
       - name: Download Artifact site
-        if: |
-          github.event.workflow_run.conclusion == 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id != ''
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           path: "./dist"
           name: github-pages
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
       - name: Deploy to Netlify
-        if: |
-          github.event.workflow_run.conclusion == 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id != ''
         id: netlify
-        uses: nwtgck/actions-netlify@v3.0
+        uses: nwtgck/actions-netlify@4cbaf4c08f1a7bfa537d6113472ef4424e4eb654 # v3.0
         with:
           publish-dir: dist
           production-deploy: false
@@ -96,18 +43,24 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 5
-      - name: Update site Preview comment
-        if: |
-          github.event.workflow_run.conclusion == 'success'
-          && steps.find-pull-request.outputs.number != ''
-          && steps.fc.outputs.comment-id != ''
+      - name: Post or update preview comment
+        env:
+          PR_NUMBER: ${{ inputs.pr_number }}
+          COMMIT_SHA: ${{ inputs.pr_sha }}
+          PREVIEW_URL: ${{ steps.netlify.outputs.deploy-url }}
         run: |
-          cat > /tmp/comment-body.md << 'EOF'
-          ${{ env.comment_message }}
-          🔍 Git commit SHA:  ${{ steps.find-pull-request.outputs.sha }}
-          ✅ Deployment Preview URL: ${{ steps.netlify.outputs.deploy-url }}
-          EOF
-          jq -Rs '{"body": .}' /tmp/comment-body.md | \
-            gh api --method PATCH \
-              "repos/${{ github.repository }}/issues/comments/${{ steps.fc.outputs.comment-id }}" \
-              --input -
+          comment_message="This pull request is being automatically built with [GitHub Actions](https://github.com/features/actions) and [Netlify](https://www.netlify.com/). To see the status of your deployment, click below."
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" | \
+            jq -r --arg msg "$comment_message" \
+              '.[] | select(.user.login == "github-actions[bot]" and (.body | contains($msg))) | .id' | \
+            head -1)
+          printf '%s\n🔍 Git commit SHA:  %s\n✅ Deployment Preview URL: %s\n' \
+            "$comment_message" "$COMMIT_SHA" "$PREVIEW_URL" > /tmp/comment-body.md
+          if [ -z "$comment_id" ]; then
+            gh pr comment "$PR_NUMBER" --body-file /tmp/comment-body.md
+          else
+            jq -Rs '{"body": .}' /tmp/comment-body.md | \
+              gh api --method PATCH \
+                "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" \
+                --input -
+          fi
