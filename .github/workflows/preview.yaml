@@ -12,68 +12,63 @@ jobs:
     defaults:
       run:
         shell: bash
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v6
       - name: Set message value
         run: |
           echo "comment_message=This pull request is being automatically built with [GitHub Actions](https://github.com/features/actions) and [Netlify](https://www.netlify.com/). To see the status of your deployment, click below." >> $GITHUB_ENV
       - name: Find Pull Request
-        uses: actions/github-script@v8
         id: find-pull-request
-        with:
-          script: |
-            let pullRequestNumber = ''
-            let pullRequestHeadSHA = ''
-            core.info('Finding pull request...')
-            const pullRequests = await github.rest.pulls.list({owner: context.repo.owner, repo: context.repo.repo})
-            for (let pullRequest of pullRequests.data) {
-              if(pullRequest.head.sha === context.payload.workflow_run.head_commit.id) {
-                  pullRequestHeadSHA = pullRequest.head.sha
-                  pullRequestNumber = pullRequest.number
-                  break
-              }
-            }
-            core.setOutput('number', pullRequestNumber)
-            core.setOutput('sha', pullRequestHeadSHA)
-            if(pullRequestNumber === '') {
-              core.info(
-                `No pull request associated with git commit SHA: ${context.payload.workflow_run.head_commit.id}`
-              )
-            }
-            else{
-              core.info(`Found pull request ${pullRequestNumber}, with head sha: ${pullRequestHeadSHA}`)
-            }
+        run: |
+          pr_data=$(gh api repos/${{ github.repository }}/pulls \
+            --jq '.[] | select(.head.sha == "${{ github.event.workflow_run.head_commit.id }}") | "\(.number) \(.head.sha)"' \
+            | head -1)
+          if [ -z "$pr_data" ]; then
+            echo "No pull request associated with git commit SHA: ${{ github.event.workflow_run.head_commit.id }}"
+            echo "number=" >> "$GITHUB_OUTPUT"
+            echo "sha=" >> "$GITHUB_OUTPUT"
+          else
+            pr_number=$(echo "$pr_data" | cut -d' ' -f1)
+            pr_sha=$(echo "$pr_data" | cut -d' ' -f2)
+            echo "Found pull request $pr_number, with head sha: $pr_sha"
+            echo "number=$pr_number" >> "$GITHUB_OUTPUT"
+            echo "sha=$pr_sha" >> "$GITHUB_OUTPUT"
+          fi
       - name: Find Comment
-        uses: peter-evans/find-comment@v4
         if: steps.find-pull-request.outputs.number != ''
         id: fc
-        with:
-          issue-number: '${{ steps.find-pull-request.outputs.number }}'
-          comment-author: 'github-actions[bot]'
-          body-includes: '${{ env.comment_message }}'
+        run: |
+          comment_id=$(gh api "repos/${{ github.repository }}/issues/${{ steps.find-pull-request.outputs.number }}/comments" \
+            --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | contains("${{ env.comment_message }}"))) | .id' \
+            | head -1)
+          echo "comment-id=${comment_id}" >> "$GITHUB_OUTPUT"
       - name: Create comment
         if: |
           github.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          issue-number: ${{ steps.find-pull-request.outputs.number }}
-          body: |
-            ${{ env.comment_message }}
-            🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
+        run: |
+          cat > /tmp/comment-body.md << 'EOF'
+          ${{ env.comment_message }}
+          🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
+          EOF
+          gh pr comment "${{ steps.find-pull-request.outputs.number }}" --body-file /tmp/comment-body.md
       - name: Update comment
         if: |
           github.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ${{ env.comment_message }}
-            🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
+        run: |
+          cat > /tmp/comment-body.md << 'EOF'
+          ${{ env.comment_message }}
+          🚧 Deployment in progress for git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
+          EOF
+          jq -Rs '{"body": .}' /tmp/comment-body.md | \
+            gh api --method PATCH \
+              "repos/${{ github.repository }}/issues/comments/${{ steps.fc.outputs.comment-id }}" \
+              --input -
       - name: Download Artifact site
         if: |
           github.event.workflow_run.conclusion == 'success'
@@ -85,7 +80,6 @@ jobs:
           name: github-pages
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-      # Push the site's HTML to Netlify and get the preview URL
       - name: Deploy to Netlify
         if: |
           github.event.workflow_run.conclusion == 'success'
@@ -107,11 +101,13 @@ jobs:
           github.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
           && steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ${{ env.comment_message }}
-            🔍 Git commit SHA:  ${{ steps.find-pull-request.outputs.sha }}
-            ✅ Deployment Preview URL: ${{ steps.netlify.outputs.deploy-url }}
+        run: |
+          cat > /tmp/comment-body.md << 'EOF'
+          ${{ env.comment_message }}
+          🔍 Git commit SHA:  ${{ steps.find-pull-request.outputs.sha }}
+          ✅ Deployment Preview URL: ${{ steps.netlify.outputs.deploy-url }}
+          EOF
+          jq -Rs '{"body": .}' /tmp/comment-body.md | \
+            gh api --method PATCH \
+              "repos/${{ github.repository }}/issues/comments/${{ steps.fc.outputs.comment-id }}" \
+              --input -
