@@ -5,6 +5,6 @@ repos:
       - id: prettier
         files: \.(json|jsonc)$ # Apply to JSON and JSONC files
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.23.1
+    rev: v1.25.2
     hooks:
       - id: zizmor
