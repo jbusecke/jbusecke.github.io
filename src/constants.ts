@@ -10,7 +10,7 @@ if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
 }
 
 export const ABOUT_ME = {
-    profile_title: "Climate Scientist and Software Engineer",
+    profile_title: "TODO: role at CoDim · Climate Scientist and Software Engineer",
     description_short: ['in interdisciplinary research and cloud-native workflows advancing open science.'],
     description: [
        'description long',
