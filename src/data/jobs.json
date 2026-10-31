@@ -1,5 +1,29 @@
 [
   {
+    "title": "TODO: role",
+    "company": "CoDim",
+    "url": "https://codimensional.com",
+    "start": "2025-10-01",
+    "end": null,
+    "full_time": true
+  },
+  {
+    "title": "TODO: role",
+    "company": "Earthmover",
+    "url": "https://earthmover.io",
+    "start": "2025-06-01",
+    "end": "2025-09-30",
+    "full_time": true
+  },
+  {
+    "title": "TODO: role",
+    "company": "Development Seed",
+    "url": "https://developmentseed.org",
+    "start": "2025-04-01",
+    "end": "2025-05-31",
+    "full_time": true
+  },
+  {
     "title": "Affiliate Graduate Faculty",
     "company": "University of Hawaii",
     "url": null,
