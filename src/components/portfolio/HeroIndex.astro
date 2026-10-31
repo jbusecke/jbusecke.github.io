@@ -29,7 +29,7 @@ const nonScienceTools = allTools.filter(
 const fullTimeJobs = jobs.filter((job) => job.full_time);
 const currentFullTimeJobs = fullTimeJobs.filter((job) => !job.end);
 
-let currentStatus = "Available for work";
+let currentStatus = "";
 
 function isValidUrl(url: string) {
   try {
@@ -52,7 +52,7 @@ if (currentFullTimeJobs.length > 0) {
         : job.company;
     })
     .join(" and ");
-  currentStatus = `Working at ${employers}`;
+  currentStatus = `Building something new at ${employers}`;
 }
 
 const {
@@ -105,17 +105,19 @@ const {
       <div
         class="flex h-full w-7/12 flex-col justify-center gap-4 p-4 max-md:w-full max-md:gap-2"
       >
-        <span
-          class="relative inline-flex items-center text-xs font-semibold leading-0 dark:text-white text-blacktext max-md:font-medium max-sm:justify-center"
-        >
+        {currentStatus && (
           <span
-            class="before:mr-2 before:block before:h-1.5 before:w-1.5 before:rounded-full before:bg-green-400 before:shadow-[0px_0px_0px_3px_rgba(34,_197,_94,_0.5)] before:animate-pulse before:content-['']"
-          ></span>
-          <p
-            class="text-lg text-zinc-800 dark:text-zinc-300"
-            set:html={currentStatus}
-          />
-        </span>
+            class="relative inline-flex items-center text-xs font-semibold leading-0 dark:text-white text-blacktext max-md:font-medium max-sm:justify-center"
+          >
+            <span
+              class="before:mr-2 before:block before:h-1.5 before:w-1.5 before:rounded-full before:bg-green-400 before:shadow-[0px_0px_0px_3px_rgba(34,_197,_94,_0.5)] before:animate-pulse before:content-['']"
+            ></span>
+            <p
+              class="text-lg text-zinc-800 dark:text-zinc-300"
+              set:html={currentStatus}
+            />
+          </span>
+        )}
 
         <h1
           class="text-4xl font-black leading-none text-blacktext dark:text-white max-xl:text-3xl max-lg:text-2xl max-sm:text-center"
