@@ -35,9 +35,9 @@ export const CONTACT = {
 }
 export const PAGE = {
     title: "Julius Busecke",
-    description : "Page description",
+    description : "Julius Busecke is building CoDim, agent infrastructure for simulation and 3D data. Climate scientist and software engineer working on open, cloud-native science.",
     author: "Julius Busecke",
-    sitename: "Site Name",
+    sitename: "Julius Busecke",
     ogimage: ABOUT_ME.profile_image,
     title_blog: "Julius Busecke's Blog",
     description_blog: "Welcome to my blog, where I share thoughts on climate science, software engineering, and open science.",
