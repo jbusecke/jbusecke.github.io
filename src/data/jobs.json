@@ -11,16 +11,16 @@
     "title": "Forward Deployed Engineer",
     "company": "Earthmover",
     "url": "https://earthmover.io",
-    "start": "2025-06-01",
-    "end": "2025-09-30",
+    "start": "2026-01-01",
+    "end": null,
     "full_time": false
   },
   {
     "title": "Contractor, Software and Data Engineering",
     "company": "Development Seed",
     "url": "https://developmentseed.org",
-    "start": "2025-04-01",
-    "end": "2025-05-31",
+    "start": "2025-06-01",
+    "end": "2025-12-31",
     "full_time": false
   },
   {
