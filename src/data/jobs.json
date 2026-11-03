@@ -8,20 +8,20 @@
     "full_time": true
   },
   {
-    "title": "TODO: role",
+    "title": "Forward Deployed Engineer",
     "company": "Earthmover",
     "url": "https://earthmover.io",
     "start": "2025-06-01",
     "end": "2025-09-30",
-    "full_time": true
+    "full_time": false
   },
   {
-    "title": "TODO: role",
+    "title": "Contractor, Software and Data Engineering",
     "company": "Development Seed",
     "url": "https://developmentseed.org",
     "start": "2025-04-01",
     "end": "2025-05-31",
-    "full_time": true
+    "full_time": false
   },
   {
     "title": "Affiliate Graduate Faculty",
