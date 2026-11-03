@@ -37,7 +37,7 @@ export const CONTACT = {
 }
 export const PAGE = {
     title: "Julius Busecke",
-    description : "Julius Busecke is CPTO at CoDimensional, building agent infrastructure for simulation and 3D data. Climate scientist and software engineer working on open, cloud-native science.",
+    description : "Julius Busecke is CPTO at CoDimensional, building agent-native infrastructure for 3D data analytics and visualization. Climate scientist and software engineer in cloud-native open science.",
     author: "Julius Busecke",
     sitename: "Julius Busecke",
     ogimage: ABOUT_ME.profile_image,
