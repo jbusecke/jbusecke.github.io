@@ -10,7 +10,7 @@ if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
 }
 
 export const ABOUT_ME = {
-    profile_title: "TODO: role at CoDim · Climate Scientist and Software Engineer",
+    profile_title: "CPTO at CoDimensional · Climate Scientist and Software Engineer",
     description_short: ['in interdisciplinary research and cloud-native workflows advancing open science.'],
     description: [
        'description long',
@@ -35,7 +35,7 @@ export const CONTACT = {
 }
 export const PAGE = {
     title: "Julius Busecke",
-    description : "Julius Busecke is building CoDim, agent infrastructure for simulation and 3D data. Climate scientist and software engineer working on open, cloud-native science.",
+    description : "Julius Busecke is CPTO at CoDimensional, building agent infrastructure for simulation and 3D data. Climate scientist and software engineer working on open, cloud-native science.",
     author: "Julius Busecke",
     sitename: "Julius Busecke",
     ogimage: ABOUT_ME.profile_image,
