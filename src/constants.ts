@@ -10,8 +10,10 @@ if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
 }
 
 export const ABOUT_ME = {
-    profile_title: "CPTO at CoDimensional · Climate Scientist and Software Engineer",
-    description_short: ['in interdisciplinary research and cloud-native workflows advancing open science.'],
+    profile_title: "CPTO at CoDimensional",
+    profile_focus: "building agent-native infrastructure for 3D data analytics and visualization.",
+    profile_background: "Climate scientist and software engineer",
+    description_short: ['in cloud-native open science.'],
     description: [
        'description long',
     ],
