@@ -10,8 +10,10 @@ if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
 }
 
 export const ABOUT_ME = {
-    profile_title: "Climate Scientist and Software Engineer",
-    description_short: ['in interdisciplinary research and cloud-native workflows advancing open science.'],
+    profile_title: "CPTO at CoDimensional",
+    profile_focus: "building agent-native infrastructure for 3D data analytics and visualization.",
+    profile_background: "Climate scientist and software engineer",
+    description_short: ['in cloud-native open science.'],
     description: [
        'description long',
     ],
@@ -35,9 +37,9 @@ export const CONTACT = {
 }
 export const PAGE = {
     title: "Julius Busecke",
-    description : "Page description",
+    description : "Julius Busecke is CPTO at CoDimensional, building agent-native infrastructure for 3D data analytics and visualization. Climate scientist and software engineer in cloud-native open science.",
     author: "Julius Busecke",
-    sitename: "Site Name",
+    sitename: "Julius Busecke",
     ogimage: ABOUT_ME.profile_image,
     title_blog: "Julius Busecke's Blog",
     description_blog: "Welcome to my blog, where I share thoughts on climate science, software engineering, and open science.",

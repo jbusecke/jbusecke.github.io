@@ -1,5 +1,29 @@
 [
   {
+    "title": "CPTO",
+    "company": "CoDimensional",
+    "url": "https://codimensional.com",
+    "start": "2026-05-01",
+    "end": null,
+    "full_time": true
+  },
+  {
+    "title": "Forward Deployed Engineer",
+    "company": "Earthmover",
+    "url": "https://earthmover.io",
+    "start": "2026-01-01",
+    "end": null,
+    "full_time": false
+  },
+  {
+    "title": "Contractor, Software and Data Engineering",
+    "company": "Development Seed",
+    "url": "https://developmentseed.org",
+    "start": "2025-06-01",
+    "end": "2025-12-31",
+    "full_time": false
+  },
+  {
     "title": "Affiliate Graduate Faculty",
     "company": "University of Hawaii",
     "url": null,

@@ -29,7 +29,7 @@ const nonScienceTools = allTools.filter(
 const fullTimeJobs = jobs.filter((job) => job.full_time);
 const currentFullTimeJobs = fullTimeJobs.filter((job) => !job.end);
 
-let currentStatus = "Available for work";
+let currentStatus = "";
 
 function isValidUrl(url: string) {
   try {
@@ -48,11 +48,11 @@ if (currentFullTimeJobs.length > 0) {
       // Add protocol if missing for display
       const url = job.url?.startsWith("http") ? job.url : `https://${job.url}`;
       return isValidUrl(job.url)
-        ? `<a href="${url}" class="underline hover:text-mint-500">${job.company}</a>`
+        ? `<a href="${url}" class="font-bold text-mint-700 underline decoration-2 underline-offset-4 hover:text-mint-600 dark:text-mint-300 dark:hover:text-mint-200">${job.company} →</a>`
         : job.company;
     })
     .join(" and ");
-  currentStatus = `Working at ${employers}`;
+  currentStatus = `Building something new at ${employers}`;
 }
 
 const {
@@ -105,17 +105,19 @@ const {
       <div
         class="flex h-full w-7/12 flex-col justify-center gap-4 p-4 max-md:w-full max-md:gap-2"
       >
-        <span
-          class="relative inline-flex items-center text-xs font-semibold leading-0 dark:text-white text-blacktext max-md:font-medium max-sm:justify-center"
-        >
+        {currentStatus && (
           <span
-            class="before:mr-2 before:block before:h-1.5 before:w-1.5 before:rounded-full before:bg-green-400 before:shadow-[0px_0px_0px_3px_rgba(34,_197,_94,_0.5)] before:animate-pulse before:content-['']"
-          ></span>
-          <p
-            class="text-lg text-zinc-800 dark:text-zinc-300"
-            set:html={currentStatus}
-          />
-        </span>
+            class="relative inline-flex items-center text-xs font-semibold leading-0 dark:text-white text-blacktext max-md:font-medium max-sm:justify-center"
+          >
+            <span
+              class="before:mr-2 before:block before:h-1.5 before:w-1.5 before:rounded-full before:bg-green-400 before:shadow-[0px_0px_0px_3px_rgba(34,_197,_94,_0.5)] before:animate-pulse before:content-['']"
+            ></span>
+            <p
+              class="text-lg text-zinc-800 dark:text-zinc-300"
+              set:html={currentStatus}
+            />
+          </span>
+        )}
 
         <h1
           class="text-4xl font-black leading-none text-blacktext dark:text-white max-xl:text-3xl max-lg:text-2xl max-sm:text-center"
@@ -128,7 +130,7 @@ const {
           <span
             class="bg-gradient-to-r from-riptide-500 to-mint-500 bg-clip-text font-black text-transparent dark:from-riptide-300 dark:to-mint-200"
             >{profileTitle}</span
-          > with <span
+          >, {ABOUT_ME.profile_focus} {ABOUT_ME.profile_background} with <span
             class="bg-gradient-to-r from-riptide-500 to-mint-500 bg-clip-text font-black text-transparent dark:from-riptide-300 dark:to-mint-200"
             >{yearsExperience} years' experience </span
           >{descriptionShort}
@@ -153,60 +155,36 @@ const {
   <div
     class="mx-auto grid max-w-7xl grid-cols-2 grid-rows-4 max-sm:gap-3 gap-4 max-md:h-[80vh] max-sm:h-[900px] max-xl:h-[550px] xl:h-[700px] md:grid-cols-4 md:grid-rows-2"
   >
+    <!-- CoDimensional -->
     <div
-      class="col-start-2 row-start-2 flex flex-col gap-3 rounded-2xl border border-emerald-50 bg-gradient-to-r from-riptide-200 to-mint-200 p-8 dark:border-zinc-800 dark:border-2 dark:bg-zinc-800 dark:bg-gradient-radial dark:from-riptide-500 dark:to-mint-500 max-md:gap-0 max-xl:p-5 max-md:p-4 max-lg:gap-1 md:col-start-4"
+      class="col-span-2 col-start-1 row-start-4 rounded-2xl bg-gradient-to-r from-mint-300 dark:from-mint-600 to-mint-50 dark:to-mint-200/5 p-[.2rem] md:col-start-3 md:row-start-2"
     >
-      <div class="flex flex-col-reverse items-start gap-4 max-md:gap-2">
-        <Heading text="Beyond the Code" level={3} />
-      </div>
-      <p
-                  class="mb-0 text-lg font-semibold leading-8 text-blacktext dark:text-gray-200 max-xl:text-base"
-                >
-                  Coming soon. <br />
-                  <!-- Learn about what I am working on and my past projects. <br /> -->
-                </p>
-      <!-- <div class="overflow-y-auto">
-        <Hobbies />
-      </div> -->
-    </div>
-
-    <!-- New Projects Panel -->
-    <div
-      class="col-start-1 row-start-2 rounded-2xl bg-gradient-to-r from-mint-300 dark:from-mint-600 to-mint-50 dark:to-mint-200/5 hover:to-mint-300/30 dark:hover:to-mint-600/30 p-[.2rem] transition-all ease-in duration-150 hover:scale-105 hover:shadow-[0_20px_50px_rgba(13,_188,_130,_0.4)] z-40 md:col-start-3"
-    >
-      <div class="h-full w-full overflow-hidden rounded-2xl dark:bg-zinc-900">
-        <div
-          class="relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-tr from-riptide-100 to-white dark:from-transparent dark:bg-gradient-to-bl dark:to-transparent"
-        >
-          <!-- replace href below with link to projects page -->
-          <!-- argument before aria-label: href={githubLink} -->
-          <a
-            target="_blank"
-            aria-label="View this site's code repository on GitHub"
+      <a
+        href="https://codimensional.com"
+        class="group/codim relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-2xl bg-gradient-to-tr from-riptide-100 to-white p-8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint-700 dark:from-mint-950 dark:to-zinc-950 max-xl:p-5 max-md:p-4"
+      >
+        <div class="flex flex-col gap-3">
+          <Heading text="Now building" textGradient="CoDimensional" level={3} />
+          <p class="mb-0 text-xl font-bold leading-snug text-blacktext dark:text-white">
+            Agent infrastructure for simulation and 3D data
+          </p>
+          <p
+            class="mb-0 text-lg font-medium leading-7 text-zinc-700 dark:text-gray-300 max-xl:text-base"
           >
-            <div
-              class="relative flex h-full flex-col gap-8 p-8 dark:before:[background-image:radial-gradient(circle,_rgba(13,188,130)_0,_rgba(1,45,34)_100%)] before:[background-image:radial-gradient(circle,_rgba(95,255,202)_0,_rgba(144,253,210)_100%)] before:absolute before:left-30 before:bottom-30 before:h-[30%] before:aspect-square before:rounded-full before:blur-3xl before:opacity-90 before:transition before:z-0 max-xl:p-5 max-md:p-4 xl:before:bottom-10"
-            >
-              <div class="z-2">
-                <Heading text="Projects" level={3} />
-
-                <p
-                  class="mb-0 text-lg font-semibold leading-8 text-blacktext dark:text-gray-200 max-xl:text-base"
-                >
-                  Coming soon. <br />
-                  <!-- Learn about what I am working on and my past projects. <br /> -->
-                </p>
-              </div>
-
-              <Icon
-                class="absolute -bottom-7 left-15 size-50 text-mint-500/30 group-hover:animate-pulse ease-in-out max-sm:left-10 max-md:left-30 xl:size-56 xl:-bottom-5 xl:-right-24"
-                name="project"
-                aria-hidden="true"
-              />
-            </div>
-          </a>
+            Simulation, scan, and sensor data in the cloud, with tools agents can call on the full-resolution data.
+            Your team reviews what they find in a live 3D scene.
+          </p>
         </div>
-      </div>
+        <span
+          class="inline-flex items-center gap-2 font-bold text-mint-700 dark:text-mint-300"
+        >
+          codimensional.com
+          <span
+            class="transition-transform duration-200 ease-out group-hover/codim:translate-x-1"
+            aria-hidden="true">→</span
+          >
+        </span>
+      </a>
     </div>
 
     <!-- Tech -->
