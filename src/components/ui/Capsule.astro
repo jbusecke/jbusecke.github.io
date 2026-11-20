@@ -2,8 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getLanguage } from "../../utils/languages";
 
-// Import Astro.glob to check for posts using this language
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
+const allPosts = Object.values(import.meta.glob("../../pages/blog/posts/*.md", { eager: true }));
 
 interface Props {
   lang: string;

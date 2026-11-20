@@ -1,7 +1,7 @@
 ---
 import Project from "./Project.astro";
 import ViewMore from "../ui/ViewMore.astro";
-const allPosts = await Astro.glob("../../pages/portfolio/projects/*.md");
+const allPosts = Object.values(import.meta.glob("../../pages/portfolio/projects/*.md", { eager: true }));
 // Sort by descending date (most recent first)
 allPosts.sort(
   (a, b) =>
